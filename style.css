@@ -14,18 +14,15 @@ li {
 	list-style: none;
 }
 
-html {
+html, body {
 	font-family: 'Poppins', sans-serif;
 	background-color: #eee;
-	overflow-x: hidden;
-}
-
-body {
-	background-color: #eee;
+	color: #342E37;
 	overflow-x: hidden;
 	margin: 0;
 }
 
+/* Sidebar */
 #sidebar {
 	position: fixed;
 	top: 0;
@@ -36,7 +33,6 @@ body {
 	z-index: 2000;
 	transition: 0.3s ease;
 	overflow-x: hidden;
-	scrollbar-width: none;
 }
 
 #sidebar .brand {
@@ -75,13 +71,10 @@ body {
 	display: flex;
 	align-items: center;
 	width: 100%;
+	text-decoration: none;
 }
 
-#content {
-	margin-left: 200px;
-	padding: 24px;
-}
-
+/* Navbar */
 #content nav {
 	height: 56px;
 	background: #F9F9F9;
@@ -91,18 +84,53 @@ body {
 	position: sticky;
 	top: 0;
 	z-index: 1000;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #content nav .bx-menu {
 	font-size: 20px;
 	cursor: pointer;
 	color: #342E37;
+	margin-right: 16px;
+}
+
+#content nav .nav-link {
+	color: #342E37;
+	font-size: 16px;
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+}
+
+#content nav .nav-link:hover {
+	color: #3C91E6;
+}
+
+#content nav .profile img {
+	width: 36px;
+	height: 36px;
+	object-fit: cover;
+	border-radius: 50%;
+	margin-left: 16px;
+}
+
+/* Main Content */
+#content {
+	margin-left: 200px;
+	padding: 24px;
 }
 
 #content main {
 	padding: 16px;
 	font-family: 'Poppins', sans-serif;
 	overflow-y: auto;
+}
+
+#content main .head-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 #content main .head-title h1 {
@@ -147,6 +175,7 @@ body {
 	font-size: 14px;
 	text-align: left;
 	padding: 8px;
+	border-bottom: 1px solid #eee;
 }
 
 #content main .table-data .todo .todo-list li {
