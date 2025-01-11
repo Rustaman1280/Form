@@ -185,3 +185,26 @@ html, body {
 	display: flex;
 	justify-content: space-between;
 }
+
+/* Tambahan: Responsif */
+@media (max-width: 768px) {
+	#sidebar {
+		width: 60px;
+	}
+
+	#sidebar .brand {
+		justify-content: center;
+	}
+
+	#content {
+		margin-left: 60px;
+	}
+
+	#content nav .bx-menu {
+		margin-right: 8px;
+	}
+
+	#content main .box-info {
+		flex-direction: column;
+	}
+}
