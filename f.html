@@ -16,38 +16,29 @@
 
         body {
             min-height: 100vh;
-            background: #F6F9FF;
+            background: #1a1a2e;
             display: flex;
             justify-content: center;
             align-items: center;
             position: relative;
         }
 
-        .figma-container {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        .container {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(113, 73, 255, 0.3);
             width: 90%;
-            max-width: 480px;
+            max-width: 500px;
             position: relative;
-            border: 1px solid #E5E7EB;
-        }
-
-        .figma-logo {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 1.5rem;
-            display: block;
-            animation: float 3s ease-in-out infinite;
         }
 
         h1 {
-            color: #1A1A1A;
-            font-size: 1.5rem;
-            font-weight: 600;
+            color: #fff;
             text-align: center;
             margin-bottom: 2rem;
+            font-size: 2em;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
         .form-group {
@@ -56,47 +47,47 @@
 
         label {
             display: block;
-            color: #444;
-            font-size: 0.875rem;
-            font-weight: 500;
+            color: #fff;
             margin-bottom: 0.5rem;
+            font-size: 1.1em;
         }
 
         input, textarea {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #E5E7EB;
-            border-radius: 8px;
-            font-size: 0.875rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #7149ff;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1em;
+            transition: all 0.3s ease;
         }
 
         input:focus, textarea:focus {
             outline: none;
-            border-color: #8B5CF6;
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 0 15px #7149ff;
         }
 
-        .submit-btn {
-            background: linear-gradient(45deg, #8B5CF6, #6366F1);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 8px;
-            font-weight: 500;
-            cursor: pointer;
+        button {
             width: 100%;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 15px;
+            background: #7149ff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(139, 92, 246, 0.2);
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px #7149ff;
         }
 
-        .submit-btn::after {
+        button::after {
             content: '';
             position: absolute;
             top: -50%;
@@ -105,12 +96,19 @@
             height: 200%;
             background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
             transform: rotate(45deg);
-            animation: shine 2s infinite;
+            animation: shine 3s infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+        .success-message {
+            display: none;
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(113, 73, 255, 0.1);
+            border: 2px solid #7149ff;
+            border-radius: 10px;
+            color: #fff;
+            text-align: center;
+            animation: pulse 1.5s infinite;
         }
 
         @keyframes shine {
@@ -118,96 +116,56 @@
             100% { transform: rotate(45deg) translateX(200%); }
         }
 
-        /* Figma-style Decorations */
-        .figma-grid {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
-            background-size: 24px 24px;
-            z-index: -1;
-        }
-
-        @media (max-width: 480px) {
-            .figma-container {
-                padding: 1.5rem;
-                border-radius: 16px;
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 10px #7149ff;
+                transform: scale(1);
             }
-            
-            h1 {
-                font-size: 1.25rem;
+            50% {
+                box-shadow: 0 0 25px #7149ff;
+                transform: scale(1.02);
             }
         }
     </style>
 </head>
 <body>
-    <div class="figma-grid"></div>
-    
-    <div class="figma-container">
-        <svg class="figma-logo" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-            <style>
-                .figma-shape { fill: #8B5CF6 }
-            </style>
-            <path class="figma-shape" d="M50 300c27.6 0 50-22.4 50-50v-50H50c-27.6 0-50 22.4-50 50s22.4 50 50 50z"/>
-            <path class="figma-shape" d="M0 150c0-27.6 22.4-50 50-50h50v100H50c-27.6 0-50-22.4-50-50z"/>
-            <path class="figma-shape" d="M0 50C0 22.4 22.4 0 50 0h50v100H50C22.4 100 0 77.6 0 50z"/>
-            <path class="figma-shape" d="M100 0h50c27.6 0 50 22.4 50 50s-22.4 50-50 50h-50V0z"/>
-            <path class="figma-shape" d="M200 150c0 27.6-22.4 50-50 50s-50-22.4-50-50 22.4-50 50-50 50 22.4 50 50z"/>
-        </svg>
-
-        <h1>Ajukan Pertanyaan ke IT Club</h1>
-        
-        <form id="questionForm">
+    <div class="container">
+        <h1>Form Pertanyaan IT Club 💻</h1>
+        <form id="myForm">
             <div class="form-group">
                 <label for="name">Nama Lengkap</label>
-                <input type="text" id="name" required placeholder="Masukkan nama Anda...">
+                <input type="text" id="name" required>
             </div>
             
             <div class="form-group">
                 <label for="question">Pertanyaan Anda</label>
-                <textarea id="question" rows="5" required placeholder="Tulis pertanyaan Anda secara detail..."></textarea>
+                <textarea id="question" rows="5" required></textarea>
             </div>
             
-            <button type="submit" class="submit-btn">
-                Kirim Pertanyaan
-                <span style="margin-left: 8px">✉️</span>
-            </button>
+            <button type="submit">Kirim Pertanyaan! 🚀</button>
+            <div class="success-message" id="successMessage">
+                Oke siap, dicatat! 📝
+            </div>
         </form>
     </div>
 
     <script>
-        document.getElementById('questionForm').addEventListener('submit', function(e) {
+        document.getElementById('myForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const name = document.getElementById('name').value;
             const question = document.getElementById('question').value;
+            const successMessage = document.getElementById('successMessage');
             
             if(name && question) {
-                // Custom alert style
-                const alertBox = document.createElement('div');
-                alertBox.style.position = 'fixed';
-                alertBox.style.top = '20px';
-                alertBox.style.left = '50%';
-                alertBox.style.transform = 'translateX(-50%)';
-                alertBox.style.background = '#8B5CF6';
-                alertBox.style.color = 'white';
-                alertBox.style.padding = '16px 24px';
-                alertBox.style.borderRadius = '8px';
-                alertBox.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-                alertBox.style.zIndex = '1000';
-                alertBox.innerHTML = `🎉 Terima kasih ${name}! Pertanyaan Anda telah terkirim!`;
-                
-                document.body.appendChild(alertBox);
+                successMessage.style.display = 'block';
+                this.reset();
                 
                 setTimeout(() => {
-                    alertBox.remove();
+                    successMessage.style.display = 'none';
                 }, 3000);
-
-                this.reset();
             }
         });
     </script>
 </body>
-  </html>
+</html>
