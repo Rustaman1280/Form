@@ -1,490 +1,219 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance - IT Club Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
-	<!-- Boxicons -->
-	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<!-- My CSS -->
-	<link rel="stylesheet" href="style.css">
+        body {
+            min-height: 100vh;
+            background: #0a0c1b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
 
-	<title>AdminHub</title>
+        .cyber-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(42, 171, 228, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(42, 171, 228, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: gridScroll 100s linear infinite;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(10, 25, 47, 0.95);
+            border-radius: 20px;
+            border: 2px solid #2AABE4;
+            box-shadow: 0 0 50px rgba(42, 171, 228, 0.4);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #2AABE4;
+            font-size: 3em;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px rgba(42, 171, 228, 0.5);
+            animation: glitch 2s infinite;
+        }
+
+        .cyber-icon {
+            font-size: 4em;
+            color: #64FFDA;
+            margin: 20px 0;
+            text-shadow: 0 0 20px #64FFDA;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        p {
+            color: #64FFDA;
+            font-size: 1.2em;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 10px;
+            margin: 30px 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            width: 75%;
+            height: 100%;
+            background: linear-gradient(90deg, #2AABE4, #64FFDA);
+            border-radius: 10px;
+            animation: progressGlow 2s infinite alternate;
+            position: relative;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-link {
+            color: #64FFDA;
+            font-size: 2em;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .social-link:hover {
+            color: #2AABE4;
+            transform: scale(1.2);
+            text-shadow: 0 0 15px #2AABE4;
+        }
+
+        .floating-icons span {
+            position: absolute;
+            color: #64FFDA;
+            font-size: 1.5em;
+            animation: float 6s infinite linear;
+            opacity: 0.7;
+        }
+
+        @keyframes gridScroll {
+            from { background-position: 0 0; }
+            to { background-position: 30px 30px; }
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 3px 0 rgba(255,0,0,0.7), -3px 0 rgba(0,0,255,0.7); }
+            2% { text-shadow: 3px 0 rgba(255,0,0,0.7), -3px 0 rgba(0,0,255,0.7); }
+            3% { text-shadow: none; }
+            97% { text-shadow: none; }
+            98% { text-shadow: -3px 0 rgba(255,0,0,0.7), 3px 0 rgba(0,0,255,0.7); }
+            100% { text-shadow: -3px 0 rgba(255,0,0,0.7), 3px 0 rgba(0,0,255,0.7); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        @keyframes progressGlow {
+            from { box-shadow: 0 0 10px #2AABE4; }
+            to { box-shadow: 0 0 20px #64FFDA; }
+        }
+
+        /* Posisi floating icons */
+        .floating-icons span:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+        .floating-icons span:nth-child(2) { top: 70%; right: 20%; animation-delay: 1s; }
+        .floating-icons span:nth-child(3) { top: 40%; left: 5%; animation-delay: 2s; }
+        .floating-icons span:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 3s; }
+    </style>
 </head>
 <body>
+    <div class="cyber-grid"></div>
+    
+    <div class="floating-icons">
+        <span>🎮</span>
+        <span>💻</span>
+        <span>🔧</span>
+        <span>🛠️</span>
+    </div>
 
+    <div class="container">
+        <div class="cyber-icon">⚙️</div>
+        <h1>SEDANG DALAM PENGEMBANGAN</h1>
+        
+        <p>🔥 Tim developer kami sedang bekerja keras untuk menyiapkan fitur-fitur keren! 🚀</p>
+        
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
 
-	<!-- SIDEBAR -->
-	<section id="sidebar">
-		<a href="#" class="brand">
-			<i class='bx bxs-smile'></i>
-			<span class="text">AdminHub</span>
-		</a>
-		<ul class="side-menu top">
-			<li class="active">
-				<a href="#">
-					<i class='bx bxs-dashboard' ></i>
-					<span class="text">Dashboard</span>
-				</a>
-			</li> </ul>
-			<!-- <li>
-				<a href="#">
-					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">My Store</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Analytics</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Message</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-group' ></i>
-					<span class="text">Team</span>
-				</a>
-			</li> 
-		</ul>
-		<ul class="side-menu">
-			<li>
-				<a href="#">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
-				</a>
-			</li>
-			<li>
-				<a href="#" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
-				</a>
-			</li>-->
-	</ul>
-	</section>
-	<!-- SIDEBAR -->
+        <p>⏳ Perkiraan waktu maintenance: <span id="countdown">99:45:00</span></p>
+        
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
 
+    <script>
+        // Animasi countdown
+        let countdown = 45 * 60; // 45 menit dalam detik
+        const countdownElement = document.getElementById('countdown');
 
+        function updateCountdown() {
+            const minutes = Math.floor(countdown / 60);
+            const seconds = countdown % 60;
+            countdownElement.innerHTML = 
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            
+            if(countdown <= 0) {
+                clearInterval(timer);
+                countdownElement.innerHTML = "SEGERA!";
+            }
+            countdown--;
+        }
 
-	<!-- CONTENT -->
-	<section id="content">
-		<!-- NAVBAR -->
-		<nav>
-			<i class='bx bx-menu' ></i>
-			<a href="#" class="nav-link">Categories</a>
-			<form action="#">
-				<div class="form-input">
-					<input type="search" placeholder="Search...">
-					<button type="submit" class="search-btn"><i class='bx bx-search' ></i></button>
-			</div>
-			</form>
-			<input type="checkbox" id="switch-mode" hidden>
-			<label for="switch-mode" class="switch-mode"></label>
-			<a href="#" class="notification">
-				<i class='bx bxs-bell' ></i>
-				<span class="num">8</span>
-			</a>
-			<a href="#" class="profile">
-				<img src="img/people.png">
-			</a>
-		</nav>
-		<!-- NAVBAR -->
+        const timer = setInterval(updateCountdown, 1000);
 
-		<!-- MAIN -->
-		<main>
-			<div class="head-title">
-				<div class="left">
-					<h1>Daftar Siswa X PPL 1</h1>
-					<ul class="breadcrumb">
-						<li>
-							<a href="#">Dashboard</a>
-						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
-						<li>
-							<a class="active" href="#">Daftar Siswa</a>
-						</li>
-					</ul>
-				</div>
-				<!--<a href="#" class="btn-download">
-					<i class='bx bxs-cloud-download' ></i>
-					<span class="text">Download PDF</span>
-				</a>-->
-			</div>
+        // Tambahkan partikel floating
+        function createFloatingParticles() {
+            const container = document.querySelector('.floating-icons');
+            const emojis = ['🎯', '🌟', '💡', '⚡', '🔌', '🖲️'];
+            
+            for(let i = 0; i < 10; i++) {
+                const particle = document.createElement('span');
+                particle.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (3 + Math.random() * 5) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
 
-			<ul class="box-info">
-				<!--<li>
-					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">
-						<h3>1020</h3>
-						<p>New Order</p>
-					</span>
-				</li>-->
-				<li>
-					<i class='bx bxs-group' ></i>
-					<span class="text">
-						<h3>36</h3>
-						<p>Siswa</p>
-					</span>
-				</li>
-				<!--<li>
-					<i class='bx bxs-dollar-circle' ></i>
-					<span class="text">
-						<h3>$2543</h3>
-						<p>Total Sales</p>
-					</span>
-				</li>-->
-			</ul>
-
-
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3>Daftar Siswa</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>Nama Lengkap</th>
-								<th>Username</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Aghry Adryanto</p>
-	</td>
-	<td>aghry</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Ana Nasrulloh</p>
-	</td>
-	<td>ana</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Aulia Novia Shuandhari</p>
-	</td>
-	<td>aulia</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Bagja Sastra Atmanagara</p>
-	</td>
-	<td>bagja</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Dhiyyaa'ali Malik Dzulfikar</p>
-	</td>
-	<td>dhiyya</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Fahri Firmansyah</p>
-	</td>
-	<td>fahri</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Ferdiansyah</p>
-	</td>
-	<td>ferdiansyah</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Finsa Angga Ramadhan</p>
-	</td>
-	<td>finsa</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Galih Adil Darmawan</p>
-	</td>
-	<td>galih</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Gazlan Hazieq El Akbar</p>
-	</td>
-	<td>gazlan</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Haura Salsabil</p>
-	</td>
-	<td>haura</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Ibnu Farrel Hermawan</p>
-	</td>
-	<td>ibnu</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Jenisa Nurfadillah</p>
-	</td>
-	<td>jenisa</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Kahvi Rizky Hardiansyah</p>
-	</td>
-	<td>kahvi</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>M Gibran Rasyad Bais Sukmana</p>
-	</td>
-	<td>gibran</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Mochamad Hamby Alfarizi</p>
-	</td>
-	<td>hamby</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Mochammad Arsy Zulfa Nur Safiq</p>
-	</td>
-	<td>arsy</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Fathir Akbarussalam</p>
-	</td>
-	<td>fathir</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Muhammad Farel Nugraha</p>
-	</td>
-	<td>farel</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Muhammad Fasha Pratama</p>
-	</td>
-	<td>fasha</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Muhammad Raffa Anugrah Sopa</p>
-	</td>
-	<td>raffa</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Nafis Ikhsan</p>
-	</td>
-	<td>nafis</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Rafi Rasyad Muhammad</p>
-	</td>
-	<td>rafi</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Raka Nurdiana</p>
-	</td>
-	<td>raka</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Regina Afriliani</p>
-	</td>
-	<td>regina</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Rehan Alfaridzi</p>
-	</td>
-	<td>rehan</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Riki Ruhikmat</p>
-	</td>
-	<td>riki</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Rustaman Delvianova</p>
-	</td>
-	<td>rustaman</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Salman Rohiman</p>
-	</td>
-	<td>salman</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Septian Ramadhan</p>
-	</td>
-	<td>septian</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Shabrina Naffisah Ayyasy</p>
-	</td>
-	<td>shabrina</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Shela Pitriani</p>
-	</td>
-	<td>shela</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Shelly Muthia Azzahra</p>
-	</td>
-	<td>shelly</td>
-	<td><span class="status completed">Completed</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Tristan Malika Zulkifli</p>
-	</td>
-	<td>tristan</td>
-	<td><span class="status pending">Pending</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Zaki Alghani Rachman</p>
-	</td>
-	<td>zaki</td>
-	<td><span class="status process">Process</span></td>
-</tr>
-<tr>
-	<td>
-		<img src="https://raw.githubusercontent.com/Rustaman1280/Form/refs/heads/master/img/people.png">
-		<p>Zefi Nurfadilah</p>
-	</td>
-	<td>zefi</td>
-	<td><span class="status completed">Completed</span></td>
-		</tr>
-	
-						</tbody>
-					</table>
-				</div>
-				<div class="todo">
-					<div class="head">
-						<h3>Todos</h3>
-						<i class='bx bx-plus' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</main>
-		<!-- MAIN -->
-	</section>
-	<!-- CONTENT -->
-	
-
-	<script src="script.js"></script>
+        createFloatingParticles();
+    </script>
 </body>
 </html>
