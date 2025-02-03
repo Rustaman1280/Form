@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maintenance - IT Club Development</title>
+    <title>Maintenance - IT Club</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
         body {
             min-height: 100vh;
-            background: #0a0c1b;
+            background: #0a1a2d; /* Warna dasar dari logo */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -39,83 +41,108 @@
             z-index: 2;
             text-align: center;
             padding: 2rem;
-            background: rgba(10, 25, 47, 0.95);
-            border-radius: 20px;
-            border: 2px solid #2AABE4;
-            box-shadow: 0 0 50px rgba(42, 171, 228, 0.4);
-            max-width: 600px;
-            width: 90%;
+            background: rgba(10, 26, 45, 0.95); /* Dark blue dari logo */
+            border-radius: 15px;
+            border: 2px solid #2AABE4; /* Biru muda dari logo */
+            box-shadow: 0 0 30px rgba(42, 171, 228, 0.3);
+            max-width: 500px;
+            width: 85%;
+            margin: 20px;
         }
 
         h1 {
             color: #2AABE4;
-            font-size: 3em;
+            font-size: 1.8em;
             margin-bottom: 1rem;
-            text-shadow: 0 0 15px rgba(42, 171, 228, 0.5);
-            animation: glitch 2s infinite;
+            text-shadow: 0 0 10px rgba(42, 171, 228, 0.3);
+            line-height: 1.3;
         }
 
         .cyber-icon {
-            font-size: 4em;
-            color: #64FFDA;
-            margin: 20px 0;
-            text-shadow: 0 0 20px #64FFDA;
+            font-size: 3em;
+            color: #ffffff;
+            margin: 15px 0;
             animation: float 3s ease-in-out infinite;
         }
 
         p {
-            color: #64FFDA;
-            font-size: 1.2em;
-            margin: 20px 0;
-            line-height: 1.6;
+            color: #ffffff;
+            font-size: 1em;
+            margin: 15px 0;
+            line-height: 1.5;
         }
 
         .progress-bar {
             width: 100%;
-            height: 20px;
-            background: rgba(100, 255, 218, 0.1);
-            border-radius: 10px;
-            margin: 30px 0;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin: 25px 0;
             overflow: hidden;
-            position: relative;
         }
 
         .progress-fill {
             width: 75%;
             height: 100%;
-            background: linear-gradient(90deg, #2AABE4, #64FFDA);
-            border-radius: 10px;
+            background: linear-gradient(90deg, #1a4b6e, #2AABE4);
+            border-radius: 8px;
             animation: progressGlow 2s infinite alternate;
-            position: relative;
         }
 
         .social-links {
-            margin-top: 30px;
+            margin-top: 25px;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .social-link {
-            color: #64FFDA;
-            font-size: 2em;
+            color: #ffffff;
+            font-size: 1.5em;
             transition: all 0.3s ease;
             text-decoration: none;
-            position: relative;
         }
 
         .social-link:hover {
             color: #2AABE4;
             transform: scale(1.2);
-            text-shadow: 0 0 15px #2AABE4;
         }
 
         .floating-icons span {
             position: absolute;
-            color: #64FFDA;
-            font-size: 1.5em;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1.2em;
             animation: float 6s infinite linear;
-            opacity: 0.7;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+                width: 90%;
+                margin: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .cyber-icon {
+                font-size: 2.5em;
+            }
+
+            p {
+                font-size: 0.9em;
+            }
+
+            .progress-bar {
+                height: 12px;
+                margin: 20px 0;
+            }
+
+            .social-link {
+                font-size: 1.3em;
+            }
         }
 
         @keyframes gridScroll {
@@ -123,64 +150,49 @@
             to { background-position: 30px 30px; }
         }
 
-        @keyframes glitch {
-            0% { text-shadow: 3px 0 rgba(255,0,0,0.7), -3px 0 rgba(0,0,255,0.7); }
-            2% { text-shadow: 3px 0 rgba(255,0,0,0.7), -3px 0 rgba(0,0,255,0.7); }
-            3% { text-shadow: none; }
-            97% { text-shadow: none; }
-            98% { text-shadow: -3px 0 rgba(255,0,0,0.7), 3px 0 rgba(0,0,255,0.7); }
-            100% { text-shadow: -3px 0 rgba(255,0,0,0.7), 3px 0 rgba(0,0,255,0.7); }
-        }
-
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
         }
 
         @keyframes progressGlow {
-            from { box-shadow: 0 0 10px #2AABE4; }
-            to { box-shadow: 0 0 20px #64FFDA; }
+            from { box-shadow: 0 0 8px #1a4b6e; }
+            to { box-shadow: 0 0 15px #2AABE4; }
         }
-
-        /* Posisi floating icons */
-        .floating-icons span:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
-        .floating-icons span:nth-child(2) { top: 70%; right: 20%; animation-delay: 1s; }
-        .floating-icons span:nth-child(3) { top: 40%; left: 5%; animation-delay: 2s; }
-        .floating-icons span:nth-child(4) { bottom: 20%; right: 10%; animation-delay: 3s; }
     </style>
 </head>
 <body>
     <div class="cyber-grid"></div>
     
     <div class="floating-icons">
-        <span>🎮</span>
         <span>💻</span>
-        <span>🔧</span>
-        <span>🛠️</span>
+        <span>🔌</span>
+        <span>🖥️</span>
+        <span>📱</span>
     </div>
 
     <div class="container">
         <div class="cyber-icon">⚙️</div>
-        <h1>SEDANG DALAM AUTH</h1>
+        <h1>WEBSITE SEDANG DALAM PENGEMBANGAN</h1>
         
-        <p>🔥 Tim developer kami sedang bekerja keras untuk menyiapkan fitur-fitur keren! 🚀</p>
+        <p>🛠️ Tim IT Club sedang menyempurnakan sistem untuk pengalaman terbaik!</p>
         
         <div class="progress-bar">
             <div class="progress-fill"></div>
         </div>
 
-        <p>⏳ Perkiraan waktu maintenance: <span id="countdown">99:45:00</span></p>
+        <p>⏰ Perkiraan waktu penyelesaian: <span id="countdown">00:30:00</span></p>
         
         <div class="social-links">
-            <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
             <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
             <a href="#" class="social-link"><i class="fab fa-github"></i></a>
         </div>
     </div>
 
     <script>
-        // Animasi countdown
-        let countdown = 45 * 60; // 45 menit dalam detik
+        // Countdown timer
+        let countdown = 30 * 60; // 30 menit
         const countdownElement = document.getElementById('countdown');
 
         function updateCountdown() {
@@ -201,14 +213,15 @@
         // Tambahkan partikel floating
         function createFloatingParticles() {
             const container = document.querySelector('.floating-icons');
-            const emojis = ['🎯', '🌟', '💡', '⚡', '🔌', '🖲️'];
+            const emojis = ['💾', '📡', '🔧', '🖲️', '⌨️', '🖨️'];
             
-            for(let i = 0; i < 10; i++) {
+            for(let i = 0; i < 6; i++) {
                 const particle = document.createElement('span');
                 particle.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDuration = (3 + Math.random() * 5) + 's';
-                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                particle.style.animationDelay = Math.random() * 3 + 's';
                 container.appendChild(particle);
             }
         }
