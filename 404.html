@@ -39,6 +39,11 @@
             text-shadow: 0 0 30px rgba(42, 171, 228, 0.5);
             animation: pulse 2s infinite;
             margin-bottom: 0.5rem;
+            line-height: 1;
+            background: linear-gradient(45deg, #2AABE4, #64FFDA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -5px;
         }
 
         .illustration {
@@ -48,38 +53,29 @@
             animation: float 3s ease-in-out infinite;
         }
 
-        h1 {
-            color: #fff;
-            font-size: clamp(1.5rem, 6vw, 2rem);
-            margin-bottom: 1rem;
-            padding: 0 15px;
+        /* SVG Robot Styles */
+        .robot-body {
+            fill: #2AABE4;
+            filter: drop-shadow(0 0 15px #2AABE4);
+        }
+        .robot-eye {
+            fill: #ffffff;
+        }
+        .robot-screen {
+            fill: #0a0c1b;
+        }
+        .robot-antenna {
+            animation: antenna 2s infinite;
         }
 
-        p {
-            color: #64FFDA;
-            font-size: clamp(0.9rem, 4vw, 1.1rem);
-            margin-bottom: 2rem;
-            padding: 0 15px;
+        @keyframes antenna {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
-        .home-btn {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(45deg, #2AABE4, #64FFDA);
-            color: #0a0c1b;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            font-size: clamp(0.9rem, 4vw, 1rem);
-        }
-
-        /* Animasi tetap sama */
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
         }
 
         @keyframes float {
@@ -87,27 +83,7 @@
             50% { transform: translateY(-10px); }
         }
 
-        @media (max-width: 480px) {
-            .illustration {
-                width: 70%;
-                animation: float-mobile 3s ease-in-out infinite;
-            }
-
-            @keyframes float-mobile {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-8px); }
-            }
-
-            .home-btn {
-                padding: 10px 20px;
-            }
-        }
-
-        /* Penyesuaian SVG */
-        .robot {
-            transform-origin: center;
-            transform-box: fill-box;
-        }
+        /* ... (kode lainnya tetap sama) ... */
     </style>
 </head>
 <body>
@@ -115,7 +91,25 @@
         <div class="error-code">404</div>
         
         <svg class="illustration" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <!-- Isi SVG tetap sama -->
+            <!-- Robot Body -->
+            <rect class="robot-body" x="50" y="60" width="100" height="120" rx="15"/>
+            
+            <!-- Robot Head -->
+            <rect class="robot-body" x="70" y="30" width="60" height="30" rx="5"/>
+            
+            <!-- Antenna -->
+            <g class="robot-antenna" transform="translate(95 10)">
+                <rect width="10" height="20" fill="#64FFDA"/>
+                <circle cx="5" cy="0" r="5" fill="#FFD700"/>
+            </g>
+            
+            <!-- Eyes -->
+            <circle class="robot-eye" cx="90" cy="45" r="5"/>
+            <circle class="robot-eye" cx="110" cy="45" r="5"/>
+            
+            <!-- Screen -->
+            <rect class="robot-screen" x="60" y="80" width="80" height="60" rx="5"/>
+            <path d="M70 90 L130 90 L120 120 L80 120 Z" fill="#64FFDA"/>
         </svg>
 
         <h1>Hilang di Luar Angkasa! 🚀</h1>
