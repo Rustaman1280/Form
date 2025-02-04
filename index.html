@@ -159,6 +159,55 @@
             from { box-shadow: 0 0 6px #1a4b6e; }
             to { box-shadow: 0 0 12px #2AABE4; }
         }
+
+            .button-group {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .blog-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #64FFDA, #2AABE4);
+            color: #0a1a2e;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .blog-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.4);
+        }
+
+        .blog-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-200%); }
+            100% { transform: rotate(45deg) translateX(200%); }
+        }
     </style>
 </head>
 <body>
@@ -184,6 +233,13 @@
         </div>
 
         <p>⏱️ Estimasi waktu: <span id="countdown">00:25:00</span></p>
+
+           <a href="#" class="blog-btn">
+                <i class="fas fa-blog"></i>
+                Lihat Blog Kami
+            </a>
+        </div>
+</div>
         
         <div class="social-links">
             <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
