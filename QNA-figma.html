@@ -20,38 +20,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            position: relative;
         }
 
-        .figma-container {
+        .container {
             background: white;
             padding: 2.5rem;
             border-radius: 24px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 480px;
-            position: relative;
-            border: 1px solid #E5E7EB;
-        }
-
-        .figma-logo {
-            width: 48px;
-            height: 48px;
-            margin: 0 auto 1.5rem;
-            display: block;
-            animation: float 3s ease-in-out infinite;
+            text-align: center;
         }
 
         h1 {
             color: #1A1A1A;
             font-size: 1.5rem;
             font-weight: 600;
-            text-align: center;
             margin-bottom: 2rem;
         }
 
         .form-group {
             margin-bottom: 1.5rem;
+            text-align: left;
         }
 
         label {
@@ -68,13 +58,6 @@
             border: 1px solid #E5E7EB;
             border-radius: 8px;
             font-size: 0.875rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #8B5CF6;
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
         }
 
         .submit-btn {
@@ -86,82 +69,30 @@
             font-weight: 500;
             cursor: pointer;
             width: 100%;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            transition: 0.3s ease-in-out;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(139, 92, 246, 0.2);
+            background: linear-gradient(45deg, #6366F1, #8B5CF6);
         }
 
-        .submit-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            animation: shine 2s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        @keyframes shine {
-            0% { transform: rotate(45deg) translateX(-200%); }
-            100% { transform: rotate(45deg) translateX(200%); }
-        }
-
-        .figma-grid {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
-            background-size: 24px 24px;
-            z-index: -1;
-        }
-
-        @media (max-width: 480px) {
-            .figma-container {
-                padding: 1.5rem;
-                border-radius: 16px;
-            }
-            
-            h1 {
-                font-size: 1.25rem;
-            }
+        .success-message {
+            display: none;
+            margin-top: 15px;
+            padding: 12px;
+            background: #D1FAE5;
+            color: #065F46;
+            border-radius: 8px;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="figma-grid"></div>
-    
-    <div class="figma-container">
-        <svg class="figma-logo" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-            <style>
-                .figma-shape { fill: #8B5CF6 }
-            </style>
-            <path class="figma-shape" d="M50 300c27.6 0 50-22.4 50-50v-50H50c-27.6 0-50 22.4-50 50s22.4 50 50 50z"/>
-            <path class="figma-shape" d="M0 150c0-27.6 22.4-50 50-50h50v100H50c-27.6 0-50-22.4-50-50z"/>
-            <path class="figma-shape" d="M0 50C0 22.4 22.4 0 50 0h50v100H50C22.4 100 0 77.6 0 50z"/>
-            <path class="figma-shape" d="M100 0h50c27.6 0 50 22.4 50 50s-22.4 50-50 50h-50V0z"/>
-            <path class="figma-shape" d="M200 150c0 27.6-22.4 50-50 50s-50-22.4-50-50 22.4-50 50-50 50 22.4 50 50z"/>
-        </svg>
 
+    <div class="container">
         <h1>Ajukan Pertanyaan Kepada Kami!</h1>
         
-        <!-- Form dengan method POST -->
-        <form id="questionForm" 
-              action="https://docs.google.com/forms/d/e/1FAIpQLSe1RuRbSYe4d1eLTgi9uhtMhw6p58LB0-_Y65wJvOYQhAAvyw/formResponse" 
-              method="POST">
+        <form id="questionForm">
             <div class="form-group">
                 <label for="name">Nama Lengkap</label>
                 <input type="text" id="name" name="entry.1941942484" required placeholder="Masukkan nama kamu...">
@@ -169,48 +100,50 @@
             
             <div class="form-group">
                 <label for="question">Pertanyaan Anda</label>
-                <textarea name="entry.1701301878" id="question" rows="5" required placeholder="Tulis pertanyaan kamu dengan detail ya..."></textarea>
+                <textarea name="entry.1701301878" id="question" rows="5" required placeholder="Tulis pertanyaan kamu..."></textarea>
             </div>
             
-            <button type="submit" class="submit-btn">
-                Kirim Pertanyaan
-                <span style="margin-left: 8px">✉️</span>
-            </button>
+            <button type="submit" class="submit-btn">Kirim Pertanyaan</button>
         </form>
+
+        <div class="success-message" id="successMessage">
+            🎉 Terima kasih! Pertanyaan Anda telah dikirim.
+        </div>
     </div>
 
     <script>
         document.getElementById('questionForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah reload halaman
+
             const name = document.getElementById('name').value;
             const question = document.getElementById('question').value;
-            
-            if (name && question) {
-                // Tampilkan pesan sukses
-                const alertBox = document.createElement('div');
-                alertBox.style.position = 'fixed';
-                alertBox.style.top = '20px';
-                alertBox.style.left = '50%';
-                alertBox.style.transform = 'translateX(-50%)';
-                alertBox.style.background = '#8B5CF6';
-                alertBox.style.color = 'white';
-                alertBox.style.padding = '16px 24px';
-                alertBox.style.borderRadius = '8px';
-                alertBox.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-                alertBox.style.zIndex = '1000';
-                alertBox.innerHTML = `🎉 Terima kasih ${name}! Pertanyaan dah dicatat📝!`;
-                
-                document.body.appendChild(alertBox);
-                
-                setTimeout(() => {
-                    alertBox.remove();
-                }, 3000);
 
-                // Biarkan form submit ke Google Form
-            } else {
-                e.preventDefault(); // Hanya mencegah submit jika validasi gagal
-                alert('Harap isi nama dan pertanyaan Anda!');
+            if (!name || !question) {
+                alert('Harap isi semua kolom!');
+                return;
             }
+
+            const formData = new FormData();
+            formData.append("entry.1941942484", name);
+            formData.append("entry.1701301878", question);
+
+            fetch("https://docs.google.com/forms/d/e/1FAIpQLSe1RuRbSYe4d1eLTgi9uhtMhw6p58LB0-_Y65wJvOYQhAAvyw/formResponse", {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            }).then(() => {
+                document.getElementById("successMessage").style.display = "block";
+                document.getElementById("questionForm").reset();
+
+                setTimeout(() => {
+                    document.getElementById("successMessage").style.display = "none";
+                }, 3000);
+            }).catch(error => {
+                alert("Gagal mengirim pertanyaan. Coba lagi.");
+                console.error("Error:", error);
+            });
         });
     </script>
+
 </body>
 </html>
