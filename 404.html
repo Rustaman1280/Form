@@ -28,14 +28,6 @@
             width: 100%;
             max-width: 320px;
             text-align: center;
-            transform: scale(0.95);
-        }
-
-        .logo {
-            width: 80px;
-            margin: 0 auto 1rem;
-            display: block;
-            animation: float 3s ease-in-out infinite;
         }
 
         .error-code {
@@ -50,11 +42,11 @@
             letter-spacing: -4px;
         }
 
-        .illustration {
+        .robot-container {
             width: 70%;
             max-width: 200px;
             margin: 1rem auto;
-            filter: drop-shadow(0 0 15px rgba(42, 171, 228, 0.3));
+            animation: float 3s ease-in-out infinite;
         }
 
         h1 {
@@ -88,19 +80,37 @@
             box-shadow: 0 0 15px rgba(42, 171, 228, 0.3);
         }
 
+        /* Animasi Robot */
+        .robot-body {
+            fill: #2AABE4;
+            filter: drop-shadow(0 0 15px #2AABE4);
+        }
+        .robot-eye {
+            fill: #ffffff;
+            animation: blink 2s infinite;
+        }
+        .robot-antenna {
+            animation: antenna 1.5s infinite;
+        }
+
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes antenna {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes blink {
+            0%, 90%, 100% { opacity: 1; }
+            95% { opacity: 0; }
         }
 
         @media (max-width: 375px) {
             .container {
                 max-width: 280px;
-                transform: scale(0.9);
-            }
-            
-            .logo {
-                width: 70px;
             }
             
             .error-code {
@@ -111,17 +121,31 @@
 </head>
 <body>
     <div class="container">
-        <img src="logo.png" alt="IT Club Logo" class="logo">
-        
         <div class="error-code">404</div>
         
-        <svg class="illustration" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <path fill="#2AABE4" d="M30 50 Q50 40 70 50 L50 80 Z" />
-            <circle cx="50" cy="50" r="40" fill="#2AABE4" opacity="0.1" />
-            <path fill="#64FFDA" d="M25 45 L75 45 L60 65 L40 65 Z" />
-            <circle cx="35" cy="35" r="5" fill="#fff" />
-            <circle cx="65" cy="35" r="5" fill="#fff" />
-        </svg>
+        <div class="robot-container">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <!-- Body -->
+                <rect class="robot-body" x="50" y="60" width="100" height="120" rx="15"/>
+                
+                <!-- Head -->
+                <rect class="robot-body" x="70" y="30" width="60" height="30" rx="5"/>
+                
+                <!-- Antenna -->
+                <g class="robot-antenna" transform="translate(95 10)">
+                    <rect width="10" height="20" fill="#64FFDA"/>
+                    <circle cx="5" cy="0" r="5" fill="#FFD700"/>
+                </g>
+                
+                <!-- Eyes -->
+                <circle class="robot-eye" cx="90" cy="45" r="5"/>
+                <circle class="robot-eye" cx="110" cy="45" r="5"/>
+                
+                <!-- Screen -->
+                <rect x="60" y="80" width="80" height="60" rx="5" fill="#0a192f"/>
+                <path d="M70 90 L130 90 L120 120 L80 120 Z" fill="#64FFDA"/>
+            </svg>
+        </div>
 
         <h1>Halaman Tidak Ditemukan</h1>
         <p>Sepertinya kamu tersesat di dunia digital...</p>
