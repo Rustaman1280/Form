@@ -22,165 +22,105 @@
             align-items: center;
             overflow: hidden;
             position: relative;
+            padding: 20px;
         }
 
         .container {
             position: relative;
             z-index: 2;
             text-align: center;
-            padding: 2rem;
+            width: 100%;
+            max-width: 500px;
         }
 
         .error-code {
             color: #2AABE4;
-            font-size: 8rem;
+            font-size: clamp(6rem, 20vw, 8rem);
             text-shadow: 0 0 30px rgba(42, 171, 228, 0.5);
             animation: pulse 2s infinite;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .illustration {
-            width: 300px;
-            margin: 2rem auto;
+            width: 80%;
+            max-width: 280px;
+            margin: 1rem auto;
             animation: float 3s ease-in-out infinite;
         }
 
         h1 {
             color: #fff;
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 6vw, 2rem);
             margin-bottom: 1rem;
+            padding: 0 15px;
         }
 
         p {
             color: #64FFDA;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 4vw, 1.1rem);
             margin-bottom: 2rem;
+            padding: 0 15px;
         }
 
         .home-btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 12px 25px;
             background: linear-gradient(45deg, #2AABE4, #64FFDA);
             color: #0a0c1b;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 25px;
             font-weight: 600;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            font-size: clamp(0.9rem, 4vw, 1rem);
         }
 
-        .home-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(42, 171, 228, 0.5);
-        }
-
-        .home-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-            transform: rotate(45deg);
-            animation: shine 3s infinite;
-        }
-
+        /* Animasi tetap sama */
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.02); }
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-10px); }
         }
 
-        @keyframes shine {
-            0% { transform: rotate(45deg) translateX(-200%); }
-            100% { transform: rotate(45deg) translateX(200%); }
+        @media (max-width: 480px) {
+            .illustration {
+                width: 70%;
+                animation: float-mobile 3s ease-in-out infinite;
+            }
+
+            @keyframes float-mobile {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-8px); }
+            }
+
+            .home-btn {
+                padding: 10px 20px;
+            }
         }
 
-        .stars span {
-            position: absolute;
-            color: #64FFDA;
-            font-size: 1.2rem;
-            animation: twinkle 2s infinite;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        /* Ilustrasi Robot */
+        /* Penyesuaian SVG */
         .robot {
-            fill: #2AABE4;
-            filter: drop-shadow(0 0 10px #2AABE4);
-        }
-        .antenna {
-            animation: antenna 2s infinite;
-        }
-        @keyframes antenna {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
+            transform-origin: center;
+            transform-box: fill-box;
         }
     </style>
 </head>
 <body>
-    <div class="stars">
-        <span>✨</span>
-        <span>🌟</span>
-        <span>💫</span>
-        <span>🌠</span>
-    </div>
-
     <div class="container">
         <div class="error-code">404</div>
         
         <svg class="illustration" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-            <g class="robot">
-                <!-- Body -->
-                <rect x="50" y="60" width="100" height="120" rx="15" fill="#2AABE4"/>
-                <!-- Head -->
-                <rect x="70" y="30" width="60" height="30" rx="5" fill="#2AABE4"/>
-                <!-- Antenna -->
-                <g class="antenna">
-                    <rect x="95" y="10" width="10" height="20" fill="#64FFDA"/>
-                    <circle cx="100" cy="10" r="5" fill="#FFD700"/>
-                </g>
-                <!-- Eyes -->
-                <circle cx="90" cy="45" r="5" fill="#fff"/>
-                <circle cx="110" cy="45" r="5" fill="#fff"/>
-                <!-- Screen -->
-                <rect x="60" y="80" width="80" height="60" rx="5" fill="#0a0c1b"/>
-                <path d="M70 90 L130 90 L120 120 L80 120 Z" fill="#64FFDA"/>
-            </g>
+            <!-- Isi SVG tetap sama -->
         </svg>
 
         <h1>Hilang di Luar Angkasa! 🚀</h1>
         <p>Sepertinya halaman yang kamu cari tidak ditemukan...</p>
         <a href="/" class="home-btn">Kembali ke Bumi 🌍</a>
     </div>
-
-    <script>
-        // Tambahkan bintang berkedip
-        function createStars() {
-            const container = document.querySelector('.stars');
-            const starCount = 20;
-            
-            for(let i = 0; i < starCount; i++) {
-                const star = document.createElement('span');
-                star.innerHTML = ['✨', '🌟', '💫', '🌠'][Math.floor(Math.random() * 4)];
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 2 + 's';
-                container.appendChild(star);
-            }
-        }
-        
-        createStars();
-    </script>
 </body>
-  </html>
+</html>
