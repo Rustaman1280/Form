@@ -158,58 +158,59 @@
 
         <h1>Ajukan Pertanyaan Kepada Kami!</h1>
         
+        
         <form id="questionForm">
             <div class="form-group">
                 <label for="name">Nama Lengkap</label>
-                <input type="text" id="name" required placeholder="Masukkan nama kamu...">
+                <input type="text" id="name" name="entry.1941942484" required placeholder="Masukkan nama kamu...">
             </div>
             
             <div class="form-group">
                 <label for="question">Pertanyaan Anda</label>
-                <textarea id="question" rows="5" required placeholder="Tulis pertanyaan kamu dengan detail ya..."></textarea>
+                <textarea name="entry.1701301878" id="question" rows="5" required placeholder="Tulis pertanyaan kamu..."></textarea>
             </div>
             
-            <button type="submit" class="submit-btn">
-                Kirim Pertanyaan
-                <span style="margin-left: 8px">✉️</span>
-            </button>
+            <button type="submit" class="submit-btn">Kirim Pertanyaan</button>
         </form>
+
+        <div class="success-message" id="successMessage">
+            🎉 Terima kasih! Pertanyaan Anda telah dikirim.
+        </div>
     </div>
 
     <script>
         document.getElementById('questionForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
+            e.preventDefault(); // Mencegah reload halaman
+
             const name = document.getElementById('name').value;
             const question = document.getElementById('question').value;
-            
-            if (name && question) {
-                // Tampilkan pesan sukses
-                const alertBox = document.createElement('div');
-                alertBox.style.position = 'fixed';
-                alertBox.style.top = '20px';
-                alertBox.style.left = '50%';
-                alertBox.style.transform = 'translateX(-50%)';
-                alertBox.style.background = '#8B5CF6';
-                alertBox.style.color = 'white';
-                alertBox.style.padding = '16px 24px';
-                alertBox.style.borderRadius = '8px';
-                alertBox.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
-                alertBox.style.zIndex = '1000';
-                alertBox.innerHTML = `🎉 Terima kasih ${name}! Pertanyaan dah dicatat📝!`;
-                
-                document.body.appendChild(alertBox);
-                
-                setTimeout(() => {
-                    alertBox.remove();
-                }, 3000);
 
-                // Reset form
-                this.reset();
-            } else {
-                alert('Harap isi nama dan pertanyaan Anda!');
+            if (!name || !question) {
+                alert('Harap isi semua kolom!');
+                return;
             }
+
+            const formData = new FormData();
+            formData.append("entry.1941942484", name);
+            formData.append("entry.1701301878", question);
+
+            fetch("https://docs.google.com/forms/d/e/1FAIpQLSe1RuRbSYe4d1eLTgi9uhtMhw6p58LB0-_Y65wJvOYQhAAvyw/formResponse", {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            }).then(() => {
+                document.getElementById("successMessage").style.display = "block";
+                document.getElementById("questionForm").reset();
+
+                setTimeout(() => {
+                    document.getElementById("successMessage").style.display = "none";
+                }, 3000);
+            }).catch(error => {
+                alert("Gagal mengirim pertanyaan. Coba lagi.");
+                console.error("Error:", error);
+            });
         });
     </script>
+
 </body>
 </html>
