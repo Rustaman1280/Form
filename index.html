@@ -152,6 +152,172 @@
             text-align: center;
             z-index: 1;
         }
+/* From Uiverse.io by Navarog21 */ 
+button {
+  position: relative;
+  width: 11em;
+  height: 4em;
+  outline: none;
+  transition: 0.1s;
+  background-color: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: bold;
+  color: #ddebf0;
+}
+
+#clip {
+  --color: #F7D501;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border: 5px double var(--color);
+  box-shadow: inset 0px 0px 15px #F7D501;
+  -webkit-clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+.arrow {
+  position: absolute;
+  transition: 0.2s;
+  background-color: #F53701;
+  top: 35%;
+  width: 11%;
+  height: 30%;
+}
+
+#leftArrow {
+  left: -13.5%;
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 0 50%);
+}
+
+#rightArrow {
+  -webkit-clip-path: polygon(100% 49%, 0 0, 0 100%);
+  left: 102%;
+}
+
+button:hover #rightArrow {
+  background-color: #F7D501;
+  left: -15%;
+  animation: 0.6s ease-in-out both infinite alternate rightArrow8;
+}
+
+button:hover #leftArrow {
+  background-color: #F7D501;
+  left: 103%;
+  animation: 0.6s ease-in-out both infinite alternate leftArrow8;
+}
+
+.corner {
+  position: absolute;
+  width: 4em;
+  height: 4em;
+  background-color: #F7D501;
+  box-shadow: inset 1px 1px 8px #ffe014;
+  transform: scale(1) rotate(45deg);
+  transition: 0.2s;
+}
+
+#rightTop {
+  top: -1.98em;
+  left: 91%;
+}
+
+#leftTop {
+  top: -1.96em;
+  left: -3.0em;
+}
+
+#leftBottom {
+  top: 2.10em;
+  left: -2.15em;
+}
+
+#rightBottom {
+  top: 45%;
+  left: 88%;
+}
+
+button:hover #leftTop {
+  animation: 0.1s ease-in-out 0.05s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover #rightTop {
+  animation: 0.1s ease-in-out 0.15s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover #rightBottom {
+  animation: 0.1s ease-in-out 0.25s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover #leftBottom {
+  animation: 0.1s ease-in-out 0.35s both changeColor8,
+  0.2s linear 0.4s both lightEffect8;
+}
+
+button:hover .corner {
+  transform: scale(1.25) rotate(45deg);
+}
+
+button:hover #clip {
+  animation: 0.2s ease-in-out 0.55s both greenLight8;
+  --color: #27c39f;
+}
+
+@keyframes changeColor8 {
+  from {
+    background-color: #F53701;
+  }
+
+  to {
+    background-color: #F7D501;
+  }
+}
+
+@keyframes lightEffect8 {
+  from {
+    box-shadow: 1px 1px 5px #27c39f;
+  }
+
+  to {
+    box-shadow: 0 0 2px #27c39f;
+  }
+}
+
+@keyframes greenLight8 {
+  from {
+  }
+
+  to {
+    box-shadow: inset 0px 0px 32px #27c39f;
+  }
+}
+
+@keyframes leftArrow8 {
+  from {
+    transform: translate(0px);
+  }
+
+  to {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes rightArrow8 {
+  from {
+    transform: translate(0px);
+  }
+
+  to {
+    transform: translateX(-10px);
+  }
+}
+
+
 
         .hero-title {
             font-size: 5rem;
@@ -662,12 +828,89 @@
 }
     }
 
-/* Swirl Cursor Effect */
+    /* From Uiverse.io by SchawnnahJ */ 
+    .loader {
+    position: fixed; /* Mengubah posisi menjadi fixed */
+ 
+  top: 0;
+  left: 0;
+  width: 100vw; /* Menggunakan unit viewport */
+  height: 100vh; /* Menggunakan unit viewport *//* Mengatur tinggi menjadi 100% */
+  background-color: black; /* Latar belakang hitam */
+  display: flex; /* Menggunakan flexbox untuk memusatkan loader */
+  justify-content: center; /* Memusatkan secara horizontal */
+  align-items: center; /* Memusatkan secara vertikal */
+  z-index: 99900;
+}
+
+.loader:before, .loader:after {
+ content: "";
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ display: block;
+ width: 0.5em;
+ height: 0.5em;
+ border-radius: 0.25em;
+ transform: translate(-50%, -50%);
+}
+
+.loader:before {
+ animation: before8 2s infinite;
+}
+
+.loader:after {
+ animation: after6 2s infinite;
+}
+
+@keyframes before8 {
+ 0% {
+  width: 0.5em;
+  box-shadow: 1em -0.5em rgba(247, 213, 1, 0.75), -1em 0.5em rgba(231, 54, 40, 0.75);
+ }
+
+ 35% {
+  width: 2.5em;
+  box-shadow: 0 -0.5em rgba(247, 213, 1, 0.75), 0 0.5em rgba(231, 54, 40, 0.75);
+ }
+
+ 70% {
+  width: 0.5em;
+  box-shadow: -1em -0.5em rgba(247, 213, 1, 0.75), 1em 0.5em rgba(231, 54, 40, 0.75);
+ }
+
+ 100% {
+  box-shadow: 1em -0.5em rgba(247, 213, 1, 0.75), -1em 0.5em rgba(231, 54, 40, 0.75);
+ }
+}
+
+@keyframes after6 {
+ 0% {
+  height: 0.5em;
+  box-shadow: 0.5em 1em rgba(78, 90, 146, 0.75), -0.5em -1em rgba(62, 176, 124, 0.75);
+ }
+
+ 35% {
+  height: 2.5em;
+  box-shadow: 0.5em 0 rgba(78, 90, 146, 0.75), -0.5em 0 rgba(62, 176, 124, 0.75);
+ }
+
+ 70% {
+  height: 0.5em;
+  box-shadow: 0.5em -1em rgba(78, 90, 146, 0.75), -0.5em 1em rgba(62, 176, 124, 0.75);
+ }
+
+ 100% {
+  box-shadow: 0.5em 1em rgba(78, 90, 146, 0.75), -0.5em -1em rgba(62, 176, 124, 0.75);
+ }
+}
+
 
     </style>
 </head>
 
 <body>
+    <div class="loader"></div>
     <!-- Navigation (Replaced) -->
     <nav>
         <div class="container">
@@ -713,6 +956,20 @@
             <div class="hero-content">
                 <h1 class="hero-title">IT Club SMKN 1 Garut</h1>
                 <p class="hero-subtitle">Tempat Berinovasi dan Mengembangkan Potensi Teknologi</p>
+                <!-- From Uiverse.io by Navarog21 --> 
+                <a href="https://blog.itclub.web.id" target="_blank">
+                    <button>
+                        J O I N
+                        <div id="clip">
+                            <div id="leftTop" class="corner"></div>
+                            <div id="rightBottom" class="corner"></div>
+                            <div id="rightTop" class="corner"></div>
+                            <div id="leftBottom" class="corner"></div>
+                        </div>
+                        <span id="rightArrow" class="arrow"></span>
+                        <span id="leftArrow" class="arrow"></span>
+                    </button>
+                </a>
             </div>
         </div>
     </section>
@@ -1059,6 +1316,19 @@ function toggleMenu() {
         }, 10); // Delay kecil untuk memastikan transisi
     }
 }
+
+// Show the loader initially
+document.querySelector('.loader').style.display = 'block';
+
+// Hide the loader and show the content after 3 seconds
+setTimeout(function() {
+    const loader = document.querySelector('.loader');
+    loader.style.opacity = '0'; // Mengubah opacity menjadi 0
+    loader.style.transition = 'opacity 0.5s ease'; // Menambahkan transisi
+    setTimeout(() => {
+        loader.style.display = 'none'; // Sembunyikan setelah transisi
+    }, 500); // Waktu yang sama dengan durasi transisi
+}, 3000); // 3000 ms = 3 detik
 
 
 </script>
