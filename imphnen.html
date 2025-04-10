@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMPHNEN - Evolusi Programmer Handal (Katanya)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome (opsional, bisa diganti SVG) untuk ikon hamburger -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS Starts Here --- */
+
+        /* --- Kursor Kustom --- */
+        body {
+            cursor: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDI0IDI0Ij48ZyBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS13aWR0aD0iMiI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iOC41Ij48L2NpcmNsZT48cGF0aCBkPSJNMSAxaDUgTTE4IDEyaDUgTTEyIDZWMS4wNE0xMiAyM3YtNC45Nk0xMS45NSAxMS45NWguMXYuMWgtLjF6Ij48L3BhdGg+PC9nPjwvc3ZnPg==') 24 24, auto;
+        }
+
+        :root {
+            /* Variabel Warna (tetap sama) */
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --bg-color: #e0f7fa;
+            --glass-bg: rgba(255, 255, 255, 0.3);
+            --glass-border: rgba(255, 255, 255, 0.5);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --highlight-color: #ff6347;
+            --text-color: var(--dark-color);
+            --header-bg: rgba(255, 255, 255, 0.6);
+            --card-bg: var(--glass-bg);
+            --card-border: var(--glass-border);
+            --card-shadow: var(--shadow-color);
+            --footer-bg: rgba(0, 0, 0, 0.05);
+            --btn-primary-bg: var(--primary-color);
+            --btn-primary-text: white;
+            --btn-secondary-bg: var(--light-color);
+            --btn-secondary-text: var(--dark-color);
+            --btn-secondary-border: var(--secondary-color);
+            --logo-text-color: var(--primary-color);
+            --nav-link-color: var(--dark-color);
+            --nav-link-active-bg: var(--primary-color);
+            --nav-link-active-text: white;
+            --h2-after-bg: linear-gradient(90deg, var(--primary-color), var(--highlight-color));
+            --dm-primary-color: #00f2ff;
+            --dm-secondary-color: #a0a0a0;
+            --dm-light-color: #2a2a3a;
+            --dm-dark-color: #0f0f1a;
+            --dm-bg-color: var(--dm-dark-color);
+            --dm-glass-bg: rgba(30, 30, 50, 0.5);
+            --dm-glass-border: rgba(0, 242, 255, 0.3);
+            --dm-shadow-color: rgba(0, 242, 255, 0.15);
+            --dm-highlight-color: #f800ff;
+            --dm-text-color: #e0e0e0;
+            --dm-header-bg: rgba(15, 15, 26, 0.7);
+            --dm-card-bg: var(--dm-glass-bg);
+            --dm-card-border: var(--dm-glass-border);
+            --dm-card-shadow: var(--dm-shadow-color);
+            --dm-footer-bg: rgba(0, 0, 10, 0.5);
+            --dm-btn-primary-bg: var(--dm-primary-color);
+            --dm-btn-primary-text: var(--dm-dark-color);
+            --dm-btn-secondary-bg: var(--dm-light-color);
+            --dm-btn-secondary-text: var(--dm-text-color);
+            --dm-btn-secondary-border: var(--dm-secondary-color);
+            --dm-logo-text-color: var(--dm-primary-color);
+            --dm-nav-link-color: var(--dm-text-color);
+            --dm-nav-link-active-bg: var(--dm-primary-color);
+            --dm-nav-link-active-text: var(--dm-dark-color);
+            --dm-h2-after-bg: linear-gradient(90deg, var(--dm-primary-color), var(--dm-highlight-color));
+            --font-family: 'Poppins', sans-serif;
+            --font-family-futuristic: 'Orbitron', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            transition: background-color 0.8s ease, color 0.8s ease;
+        }
+
+        h1, h2, h3, .logo-text {
+            font-family: var(--font-family-futuristic);
+            letter-spacing: 1px;
+        }
+
+        /* Background Effects Container */
+        .background-effects { position: fixed; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -2; pointer-events: none; }
+        .background-shapes { position: absolute; top: 0; left: 0; width: 100%; height: 100%; overflow: hidden; z-index: -1; transition: opacity 0.8s ease; opacity: 1; }
+        .shape { position: absolute; border-radius: 50%; opacity: 0.1; filter: blur(50px); }
+        .shape1 { width: 300px; height: 300px; background: linear-gradient(135deg, #89f7fe, #66a6ff); top: -50px; left: -80px; }
+        .shape2 { width: 400px; height: 400px; background: linear-gradient(135deg, #ffdee9, #b5b9ff); bottom: -100px; right: -150px; }
+        .shape3 { width: 250px; height: 250px; background: linear-gradient(135deg, #f093fb, #f5576c); top: 30%; right: 5%; }
+        .futuristic-light { position: absolute; border-radius: 50%; opacity: 0; filter: blur(80px); transition: opacity 1.5s ease; will-change: transform; animation: moveLight 20s infinite alternate ease-in-out; }
+        .light1 { width: 500px; height: 500px; background: radial-gradient(circle, var(--dm-primary-color), transparent 70%); top: 10%; left: -10%; animation-delay: 0s; }
+        .light2 { width: 600px; height: 600px; background: radial-gradient(circle, var(--dm-highlight-color), transparent 70%); bottom: 5%; right: -15%; animation-delay: -10s; }
+        .light3 { width: 300px; height: 300px; background: radial-gradient(circle, #ffff00, transparent 60%); top: 50%; left: 40%; filter: blur(60px); animation: moveLight 15s infinite alternate ease-in-out -5s; }
+        @keyframes moveLight { 0% { transform: translate(0, 0) scale(1) rotate(0deg); } 50% { transform: translate(30px, -50px) scale(1.1) rotate(15deg); } 100% { transform: translate(-20px, 40px) scale(0.95) rotate(-10deg); } }
+
+        /* -------- Dark Mode Styling -------- */
+        body.dark-mode {
+            /* Variabel warna dark mode (tetap sama) */
+            --bg-color: var(--dm-bg-color);
+            --text-color: var(--dm-text-color);
+            --primary-color: var(--dm-primary-color);
+            --secondary-color: var(--dm-secondary-color);
+            --light-color: var(--dm-light-color);
+            --dark-color: var(--dm-dark-color);
+            --highlight-color: var(--dm-highlight-color);
+            --glass-bg: var(--dm-glass-bg);
+            --glass-border: var(--dm-glass-border);
+            --shadow-color: var(--dm-shadow-color);
+            --header-bg: var(--dm-header-bg);
+            --card-bg: var(--dm-card-bg);
+            --card-border: var(--dm-card-border);
+            --card-shadow: var(--dm-card-shadow);
+            --footer-bg: var(--dm-footer-bg);
+            --btn-primary-bg: var(--dm-btn-primary-bg);
+            --btn-primary-text: var(--dm-btn-primary-text);
+            --btn-secondary-bg: var(--dm-btn-secondary-bg);
+            --btn-secondary-text: var(--dm-text-color);
+            --btn-secondary-border: var(--dm-secondary-color);
+             --logo-text-color: var(--dm-logo-text-color);
+            --nav-link-color: var(--dm-nav-link-color);
+            --nav-link-active-bg: var(--dm-primary-color);
+            --nav-link-active-text: var(--dm-dark-color);
+            --h2-after-bg: var(--dm-h2-after-bg);
+
+             /* Efek dark mode (tetap sama) */
+             & h1 { text-shadow: 0 0 8px var(--dm-primary-color); }
+             & .highlight { color: var(--dm-highlight-color); text-shadow: 0 0 6px var(--dm-highlight-color); }
+             & .background-shapes { opacity: 0; }
+             & .futuristic-light { opacity: 0.3; }
+
+             /* Dark mode untuk hamburger */
+             & .menu-toggle i { color: var(--dm-primary-color); }
+             & .nav-links-container.active { background: var(--dm-header-bg); }
+             & .nav-links-container li a { color: var(--dm-nav-link-color); }
+             & .nav-links-container li a:hover,
+             & .nav-links-container li a.active { background-color: var(--dm-nav-link-active-bg); color: var(--dm-nav-link-active-text); }
+
+             /* Pastikan loader tetap putih backgroundnya tapi animasi gelap */
+             /* #loading-overlay tetap putih (lihat CSS utama) */
+             /* .hex-brick warna tetap (lihat CSS utama) */
+        }
+        /* -------- End Dark Mode Styling -------- */
+
+        /* Utilitas */
+        .highlight { color: var(--highlight-color); font-weight: 700; transition: color 0.5s ease, text-shadow 0.5s ease; }
+        .strike { text-decoration: line-through; opacity: 0.7; }
+        .small-text { font-size: 0.9em; color: var(--secondary-color); margin-top: 10px; transition: color 0.5s ease; }
+        .small-text a { color: var(--primary-color); text-decoration: none; transition: color 0.5s ease; }
+        .small-text a:hover { text-decoration: underline; }
+
+        /* Header & Navigasi */
+        header { position: sticky; top: 0; z-index: 1000; background: var(--header-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 2px 10px var(--shadow-color); padding: 10px 0; border-bottom: 1px solid var(--glass-border); transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease; }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; position: relative; /* Untuk positioning menu mobile */ }
+        .logo-container { display: flex; flex-direction: column; align-items: flex-start; }
+        .logo-image { max-height: 50px; display: block; }
+        .logo-text { font-size: 1.8em; font-weight: 700; color: var(--logo-text-color); transition: color 0.5s ease; }
+        .logo-subtext { font-size: 0.8em; color: var(--secondary-color); margin-top: -5px; transition: color 0.5s ease;}
+
+        /* Nav Links Container (Wrapper untuk list) */
+        .nav-links-container { list-style: none; display: flex; }
+        .nav-links-container li { margin-left: 25px; }
+        .nav-links-container li a { text-decoration: none; color: var(--nav-link-color); font-weight: 600; padding: 5px 10px; border-radius: 5px; transition: background-color 0.3s ease, color 0.3s ease; font-family: var(--font-family); display: block; /* Penting untuk menu mobile */ }
+        .nav-links-container li a:hover, .nav-links-container li a.active { background-color: var(--nav-link-active-bg); color: var(--nav-link-active-text); }
+
+        /* Hamburger Menu Toggle Button */
+        .menu-toggle { display: none; /* Sembunyikan di desktop */ background: none; border: none; cursor: pointer; padding: 10px; position: absolute; /* Atau sesuaikan dengan flex */ right: 20px; top: 50%; transform: translateY(-50%); z-index: 1001; }
+        .menu-toggle i { font-size: 1.8em; color: var(--primary-color); /* Warna ikon */ transition: color 0.3s ease; }
+
+        /* Hero Section */
+        .hero-section { min-height: 80vh; display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 40px auto 0 auto; padding: 40px 20px; gap: 40px; position: relative; }
+        .hero-content { flex: 1; max-width: 600px; }
+        .hero-section h1 { font-size: 3.5em; font-weight: 700; line-height: 1.2; margin-bottom: 10px; }
+        .hero-section .subtitle { font-size: 1.8em; font-weight: 400; color: var(--secondary-color); margin-bottom: 20px; transition: color 0.5s ease; }
+        .hero-section p { font-size: 1.1em; margin-bottom: 30px; }
+        .hero-image-placeholder { flex: 1; display: flex; justify-content: center; align-items: center; max-width: 500px; }
+        .hero-image-placeholder img, .hero-image-placeholder svg { max-width: 100%; height: auto; opacity: 0.8; display: block; }
+        .cta-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+
+        /* Tombol (Buttons) */
+        .btn { padding: 12px 25px; border: none; border-radius: 8px; font-weight: 600; text-decoration: none; cursor: pointer; display: inline-block; transition: all 0.3s ease; box-shadow: 0 4px 8px var(--shadow-color); transform-style: preserve-3d; transform: translateZ(0); background-color: transparent; font-family: var(--font-family); }
+        .btn-primary { background-color: var(--btn-primary-bg); color: var(--btn-primary-text); }
+        .btn-primary:hover { background-color: color-mix(in srgb, var(--btn-primary-bg), black 15%); transform: scale(1.05) translateZ(10px); box-shadow: 0 6px 12px color-mix(in srgb, var(--shadow-color), black 20%); }
+        .btn-secondary { background-color: var(--btn-secondary-bg); color: var(--btn-secondary-text); border: 1px solid var(--btn-secondary-border); }
+        .btn-secondary:hover { background-color: color-mix(in srgb, var(--btn-secondary-bg), black 5%); transform: scale(1.05) translateZ(10px); box-shadow: 0 6px 12px color-mix(in srgb, var(--shadow-color), black 15%); }
+        .dark-mode .btn-primary { box-shadow: 0 0 10px var(--dm-primary-color), 0 4px 8px var(--dm-shadow-color); text-shadow: 0 0 3px rgba(0,0,0,0.5); }
+        .dark-mode .btn-primary:hover { box-shadow: 0 0 15px var(--dm-primary-color), 0 0 25px var(--dm-primary-color), 0 6px 12px var(--dm-shadow-color); transform: scale(1.08) translateZ(15px); }
+        .btn-large { padding: 15px 35px; font-size: 1.2em; }
+
+        /* Content Section */
+        .content-section { max-width: 1200px; margin: 80px auto; padding: 60px 20px; text-align: center; position: relative; }
+        .content-section h2 { font-size: 2.5em; margin-bottom: 50px; position: relative; color: var(--text-color); transition: color 0.5s ease;}
+        .content-section h2::after { content: ''; display: block; width: 80px; height: 4px; background: var(--h2-after-bg); margin: 15px auto 0; border-radius: 2px; transition: background 0.5s ease; }
+
+        /* Trigger Div for Dark Mode */
+        #dark-trigger-wrapper { height: 30vh; position: relative; margin-bottom: 50px; }
+        #dark-transition-trigger { position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; }
+
+        /* Kartu (Cards) */
+        .card-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 30px; }
+        .card { background: var(--card-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 15px; padding: 30px; text-align: left; border: 1px solid var(--card-border); box-shadow: 0 5px 15px var(--card-shadow); transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease, background-color 0.5s ease, border-color 0.5s ease; transform-style: preserve-3d; transform: perspective(1000px); }
+        .card.tilt:hover { box-shadow: 0 10px 25px var(--card-shadow); }
+        .dark-mode .card.tilt:hover { box-shadow: 0 0 20px var(--dm-primary-color), 0 10px 30px var(--dm-shadow-color); }
+        .card h3 { color: var(--primary-color); margin-bottom: 15px; font-size: 1.5em; transition: color 0.5s ease; }
+        .card p { font-size: 1em; }
+
+        /* Features Section Specifics */
+        .features-section { background: linear-gradient(135deg, var(--glass-bg), color-mix(in srgb, var(--glass-bg), black 10%)); padding: 60px 20px; border-radius: 20px; margin: 60px 20px; max-width: none; transition: background 0.5s ease; }
+        .feature-card { text-align: center; padding: 30px 20px; }
+        .feature-card .icon { font-size: 3em; display: block; margin: 0 auto 20px auto; color: var(--primary-color); line-height: 1; transition: color 0.5s ease;}
+        .feature-card h3 { margin-bottom: 10px; font-size: 1.3em; color: var(--text-color); transition: color 0.5s ease; }
+        .feature-card p { font-size: 0.95em; color: var(--secondary-color); transition: color 0.5s ease; }
+
+        /* ------- Tools Section Specific Styling ------- */
+        #tools h2 {}
+        #tools > p {
+             max-width: 700px;
+             margin: -30px auto 40px auto;
+             font-size: 1.1em;
+             color: var(--secondary-color);
+             transition: color 0.5s ease;
+             text-align: center;
+             line-height: 1.7;
+        }
+        /* === BARU: Pusatkan kartu di section tools === */
+        #tools .card-container {
+            justify-content: center; /* Center the grid items horizontally */
+        }
+        .tool-card { }
+        .tool-card .icon { font-size: 2.5em; margin-bottom: 15px; color: var(--highlight-color); opacity: 0.8; }
+
+        /* ------- Hall of Fame Section ------- */
+         #hall-of-fame .card-container { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .hof-card { text-align: center; position: relative; overflow: hidden; }
+        .hof-card .avatar { width: 100px; height: 100px; border-radius: 50%; border: 3px solid var(--primary-color); margin: 0 auto 20px auto; display: block; object-fit: cover; background-color: var(--light-color); transition: border-color 0.5s ease, box-shadow 0.5s ease; }
+        .hof-card h3 { margin-bottom: 5px; }
+        .hof-card .title { font-size: 0.9em; color: var(--secondary-color); font-weight: 600; margin-bottom: 15px; display: block; transition: color 0.5s ease; }
+        .dark-mode .hof-card .avatar { border-color: var(--dm-primary-color); box-shadow: 0 0 10px var(--dm-primary-color); }
+        .dark-mode .hof-card::before { content: ''; position: absolute; top: -50%; right: -50%; width: 100%; height: 100%; background: radial-gradient(circle, color-mix(in srgb, var(--dm-primary-color), transparent 60%), transparent 70%); opacity: 0.1; transform: rotate(45deg); pointer-events: none; }
+
+        /* Call to Action (Join) Section */
+        .cta-section { background-color: var(--glass-bg); backdrop-filter: blur(5px); border-radius: 15px; margin: 80px auto; padding: 50px 30px; box-shadow: 0 8px 20px var(--card-shadow); transform-style: preserve-3d; max-width: 1200px; transition: background-color 0.5s ease, box-shadow 0.5s ease; }
+        .cta-section h2 { margin-bottom: 20px; }
+        .cta-section p { margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .dark-mode .cta-section .btn-primary { font-size: 1.3em; padding: 18px 40px; box-shadow: 0 0 15px var(--dm-primary-color), 0 0 25px var(--dm-highlight-color), 0 6px 15px var(--dm-shadow-color); animation: pulseGlow 2s infinite alternate; }
+        .dark-mode .cta-section .btn-primary:hover { box-shadow: 0 0 25px var(--dm-primary-color), 0 0 40px var(--dm-highlight-color), 0 8px 20px var(--dm-shadow-color); transform: scale(1.1) translateZ(20px); }
+        @keyframes pulseGlow { from { box-shadow: 0 0 10px var(--dm-primary-color), 0 0 15px var(--dm-highlight-color), 0 6px 10px var(--dm-shadow-color); } to { box-shadow: 0 0 15px var(--dm-primary-color), 0 0 25px var(--dm-highlight-color), 0 8px 15px var(--dm-shadow-color); } }
+
+        /* Footer */
+        footer { text-align: center; padding: 30px 20px; margin-top: 40px; background-color: var(--footer-bg); color: var(--secondary-color); font-size: 0.9em; transition: background-color 0.5s ease, color 0.5s ease; }
+        footer p:first-child { margin-bottom: 5px; }
+
+        /* --- START: CSS Loading Animation --- */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* === BARU: Background putih solid === */
+            background-color: #ffffff;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.5s ease-out, visibility 0s linear 0s;
+        }
+
+        #loading-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-out, visibility 0s linear 0.5s;
+        }
+
+        .socket {
+          width: 200px;
+          height: 200px;
+          position: absolute;
+        }
+
+        .hex-brick {
+          /* === BARU: Warna dasar gelap agar terlihat di background putih === */
+          background: #333333;
+          width: 30px;
+          height: 17px;
+          position: absolute;
+          top: 5px;
+          /* === BARU: Pastikan animasi fade00 yang digunakan === */
+          animation-name: fade00 !important; /* Paksa pakai ini */
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+          -webkit-animation-name: fade00 !important;
+          -webkit-animation-duration: 2s;
+          -webkit-animation-iteration-count: infinite;
+        }
+
+        .h2 { transform: rotate(60deg); -webkit-transform: rotate(60deg); }
+        .h3 { transform: rotate(-60deg); -webkit-transform: rotate(-60deg); }
+        .gel { height: 30px; width: 30px; transition: all .3s; -webkit-transition: all .3s; position: absolute; top: 50%; left: 50%; }
+        .center-gel { margin-left: -15px; margin-top: -15px; animation-name: pulse00; animation-duration: 2s; animation-iteration-count: infinite; -webkit-animation-name: pulse00; -webkit-animation-duration: 2s; -webkit-animation-iteration-count: infinite; }
+
+        /* Posisi .c* dan .r* tetap sama */
+        .c1 { margin-left: -47px; margin-top: -15px; } .c2 { margin-left: -31px; margin-top: -43px; } .c3 { margin-left: 1px; margin-top: -43px; } .c4 { margin-left: 17px; margin-top: -15px; } .c5 { margin-left: -31px; margin-top: 13px; } .c6 { margin-left: 1px; margin-top: 13px; } .c7 { margin-left: -63px; margin-top: -43px; } .c8 { margin-left: 33px; margin-top: -43px; } .c9 { margin-left: -15px; margin-top: 41px; } .c10 { margin-left: -63px; margin-top: 13px; } .c11 { margin-left: 33px; margin-top: 13px; } .c12 { margin-left: -15px; margin-top: -71px; } .c13 { margin-left: -47px; margin-top: -71px; } .c14 { margin-left: 17px; margin-top: -71px; } .c15 { margin-left: -47px; margin-top: 41px; } .c16 { margin-left: 17px; margin-top: 41px; } .c17 { margin-left: -79px; margin-top: -15px; } .c18 { margin-left: 49px; margin-top: -15px; } .c19 { margin-left: -63px; margin-top: -99px; } .c20 { margin-left: 33px; margin-top: -99px; } .c21 { margin-left: 1px; margin-top: -99px; } .c22 { margin-left: -31px; margin-top: -99px; } .c23 { margin-left: -63px; margin-top: 69px; } .c24 { margin-left: 33px; margin-top: 69px; } .c25 { margin-left: 1px; margin-top: 69px; } .c26 { margin-left: -31px; margin-top: 69px; } .c28 { margin-left: -95px; margin-top: -43px; } .c29 { margin-left: -95px; margin-top: 13px; } .c30 { margin-left: 49px; margin-top: 41px; } .c31 { margin-left: -79px; margin-top: -71px; } .c32 { margin-left: -111px; margin-top: -15px; } .c33 { margin-left: 65px; margin-top: -43px; } .c34 { margin-left: 65px; margin-top: 13px; } .c35 { margin-left: -79px; margin-top: 41px; } .c36 { margin-left: 49px; margin-top: -71px; } .c37 { margin-left: 81px; margin-top: -15px; }
+
+        .r1 { animation-name: pulse00; animation-duration: 2s; animation-iteration-count: infinite; animation-delay: .2s; -webkit-animation-name: pulse00; -webkit-animation-duration: 2s; -webkit-animation-iteration-count: infinite; -webkit-animation-delay: .2s; }
+        .r2 { animation-name: pulse00; animation-duration: 2s; animation-iteration-count: infinite; animation-delay: .4s; -webkit-animation-name: pulse00; -webkit-animation-duration: 2s; -webkit-animation-iteration-count: infinite; -webkit-animation-delay: .4s; }
+        .r3 { animation-name: pulse00; animation-duration: 2s; animation-iteration-count: infinite; animation-delay: .6s; -webkit-animation-name: pulse00; -webkit-animation-duration: 2s; -webkit-animation-iteration-count: infinite; -webkit-animation-delay: .6s; }
+
+        /* Animasi hex-brick tetap menggunakan fade00 */
+        .r1 > .hex-brick { animation-name: fade00 !important; animation-duration: 2s; animation-iteration-count: infinite; animation-delay: .2s; -webkit-animation-name: fade00 !important; -webkit-animation-duration: 2s; -webkit-animation-iteration-count: infinite; -webkit-animation-delay: .2s; }
+        .r2 > .hex-brick { animation-name: fade00 !important; animation-duration: 2s; animation-iteration-count: infinite; animation-delay: .4s; -webkit-animation-name: fade00 !important; -webkit-animation-duration: 2s; -webkit-animation-iteration-count: infinite; -webkit-animation-delay: .4s; }
+        .r3 > .hex-brick { animation-name: fade00 !important; animation-duration: 2s; animation-iteration-count: infinite; animation-delay: .6s; -webkit-animation-name: fade00 !important; -webkit-animation-duration: 2s; -webkit-animation-iteration-count: infinite; -webkit-animation-delay: .6s; }
+
+        @keyframes pulse00 { 0% { transform: scale(1); -webkit-transform: scale(1); } 50% { transform: scale(0.01); -webkit-transform: scale(0.01); } 100% { transform: scale(1); -webkit-transform: scale(1); } }
+
+        /* === BARU: Keyframe fade00 disesuaikan untuk background putih === */
+        @keyframes fade00 {
+          0% { background: #555555; } /* Warna lebih gelap */
+          50% { background: #000000; } /* Hitam */
+          100% { background: #444444; }/* Warna lebih gelap */
+        }
+        /* Keyframe fade00-dark dihapus karena tidak diperlukan lagi */
+        /* --- END: CSS Loading Animation --- */
+
+
+        /* --- Responsiveness --- */
+        @media (max-width: 992px) {
+             .hero-section { flex-direction: column; text-align: center; min-height: auto; padding: 30px 20px; margin-top: 20px; }
+             .hero-content { max-width: 100%; order: 2; }
+             .hero-image-placeholder { max-width: 400px; width: 80%; margin-bottom: 30px; order: 1; }
+             .hero-section h1 { font-size: 2.8em; }
+             .hero-section .subtitle { font-size: 1.5em; }
+             .cta-buttons { justify-content: center; }
+             .cta-section, .features-section, .content-section { margin-left: 15px; margin-right: 15px; padding: 40px 15px;}
+             .content-section h2 { font-size: 2.2em; margin-bottom: 40px; }
+             #tools > p { max-width: 90%; }
+        }
+
+        @media (max-width: 768px) {
+            /* === START: Hamburger Menu Styles === */
+            .menu-toggle { display: block; /* Tampilkan hamburger */ }
+            .nav-links-container {
+                display: none; /* Sembunyikan list menu awal */
+                flex-direction: column;
+                position: absolute;
+                top: 100%; /* Posisi di bawah header */
+                left: 0;
+                width: 100%;
+                background: var(--header-bg); /* Background sama dengan header */
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                box-shadow: 0 5px 10px var(--shadow-color);
+                padding: 10px 0;
+                border-top: 1px solid var(--glass-border);
+            }
+            .nav-links-container.active {
+                display: flex; /* Tampilkan saat menu aktif */
+            }
+            .nav-links-container li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-links-container li a {
+                padding: 15px 20px; /* Padding lebih besar untuk tap */
+                border-radius: 0;
+                border-bottom: 1px solid rgba(128, 128, 128, 0.1); /* Garis pemisah tipis */
+            }
+            .nav-links-container li:last-child a {
+                border-bottom: none;
+            }
+            .nav-links-container li a:hover, .nav-links-container li a.active {
+                 /* Style hover/active di mobile (sama seperti desktop atau bisa disesuaikan) */
+                background-color: var(--nav-link-active-bg);
+                color: var(--nav-link-active-text);
+            }
+             /* === END: Hamburger Menu Styles === */
+
+            /* Penyesuaian lainnya */
+            nav { padding: 10px 20px; /* Sesuaikan padding nav */ }
+            .logo-container { /* Mungkin perlu disesuaikan jika logo terlalu besar */ }
+            .hero-section h1 { font-size: 2.5em; }
+            .content-section h2 { font-size: 2em; }
+            .card-container { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+            #tools > p { font-size: 1em; }
+            #tools .card-container { justify-content: stretch; /* Kembali ke default di mobile jika perlu */ }
+        }
+
+        @media (max-width: 576px) {
+             body { line-height: 1.5; }
+             .hero-section h1 { font-size: 2em; }
+             .hero-section .subtitle { font-size: 1.2em; }
+             .hero-section p { font-size: 1em; }
+             .btn { padding: 10px 20px; font-size: 0.9em; width: 100%; margin-bottom: 10px; }
+             .cta-buttons .btn:last-child { margin-bottom: 0; }
+             .cta-buttons { width: 90%; margin: 0 auto; }
+             .btn-large { padding: 15px 30px; font-size: 1.1em; width: auto; }
+             .cta-section .btn-large { width: 90%; margin: 0 auto; display: block;}
+             .content-section h2 { font-size: 1.8em; }
+             footer { font-size: 0.8em; }
+             .card { padding: 20px; }
+             .feature-card { padding: 25px 15px; }
+             .content-section { padding: 30px 10px; }
+             #hall-of-fame .card-container { grid-template-columns: 1fr; }
+             #tools > p { margin-top: -20px; margin-bottom: 30px;}
+             .menu-toggle i { font-size: 1.6em; } /* Kecilkan ikon hamburger sedikit */
+        }
+
+        /* --- CSS Ends Here --- */
+    </style>
+</head>
+<body>
+
+    <!-- START: Loading Overlay -->
+    <div id="loading-overlay">
+        <div class="socket">
+            <!-- Struktur HTML loader tetap sama -->
+            <div class="gel center-gel"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c1 r1"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c2 r1"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c3 r1"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c4 r1"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c5 r1"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c6 r1"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c7 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c8 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c9 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c10 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c11 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c12 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c13 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c14 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c15 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c16 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c17 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c18 r2"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c19 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c20 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c21 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c22 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c23 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c24 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c25 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c26 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c28 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c29 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c30 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c31 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c32 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c33 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c34 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c35 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c36 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+            <div class="gel c37 r3"><div class="hex-brick h1"></div><div class="hex-brick h2"></div><div class="hex-brick h3"></div></div>
+        </div>
+    </div>
+    <!-- END: Loading Overlay -->
+
+    <!-- Background Effects -->
+    <div class="background-effects"> <div class="futuristic-light light1"></div> <div class="futuristic-light light2"></div> <div class="futuristic-light light3"></div> <div class="background-shapes"> <div class="shape shape1"></div> <div class="shape shape2"></div> <div class="shape shape3"></div> </div> </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo-container">
+                <span class="logo-text">IMPHNEN</span>
+                <span class="logo-subtext">プログラマー</span>
+            </div>
+            <!-- === BARU: Tombol Hamburger === -->
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i> <!-- Ikon Font Awesome -->
+                <!-- Atau gunakan SVG: -->
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg> -->
+            </button>
+            <!-- === BARU: Wrapper untuk link navigasi === -->
+            <ul class="nav-links-container">
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#hall-of-fame">Legenda</a></li>
+                <li><a href="#join">Gabung</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section (Keep as is) -->
+        <section id="hero" class="hero-section"> <div class="hero-content"> <h1>Ingin Menjadi <span class="highlight">Programmer Handal?</span></h1> <h2 class="subtitle">...Tapi <span class="strike">Agak</span> Malas Ngoding? 🤔</h2> <p>Selamat datang di Markas Besar IMPHNEN! Tempat berkumpulnya para calon maestro kode (yang cita-citanya setinggi langit tapi semangat ngodingnya sebatas scroll meme). Temukan jalan pintas, tips jenius, dan dukungan mental sesama pejuang (malas).</p> <div class="cta-buttons"> <a href="#features" class="btn btn-primary tilt">Lihat "Fitur" Unggulan!</a> <a href="https://www.facebook.com/groups/1032515944638255/" target="_blank" class="btn btn-secondary tilt">Gabung Komunitas FB</a> </div> </div> <div class="hero-image-placeholder"> </div> </section>
+
+        <!-- About Section (Keep as is) -->
+        <section id="about" class="content-section"> <h2>Siapa Sih <span class="highlight">IMPHNEN</span> Itu Sebenarnya?</h2> <div class="card-container"> <div class="card tilt"> <h3>Visi Tingkat Dewa</h3> <p>Menjadi penguasa dunia digital tanpa harus terlalu sering berinteraksi dengan... *uhuk*... syntax error. Kita adalah arsitek solusi elegan (via Google & Stack Overflow).</p> </div> <div class="card tilt"> <h3>Misi Kalau Sempat</h3> <p>Berbagi source code (hasil copy-paste), tutorial 'anti-pusing level max', meme penyemangat jiwa raga, dan (sangat) kadang-kadang... beneran nulis kode original sedikit.</p> </div> <div class="card tilt"> <h3>Filosofi Inti: <span class="highlight">Ngopi > Ngoding</span></h3> <p>Kerja cerdas itu penting, tapi istirahat cerdas lebih penting. Optimalkan Ctrl+C, Ctrl+V, maksimalkan waktu eksplorasi dunia maya (alias nonton tutorial tapi gak dipraktekin).</p> </div> </div> </section>
+
+        <!-- Features Section (Keep as is) -->
+        <section id="features" class="content-section features-section"> <h2>"Fitur Unggulan" (Kenapa Kamu <span class="highlight">Wajib</span> di Sini)</h2> <div class="card-container"> <div class="feature-card card tilt"> <span class="icon">☕️</span> <h3>Kopi & Kompilasi (Error)</h3> <p>Diskusi teknologi sambil menyeruput kopi. Perbandingan jumlah error kompilasi dengan jumlah tegukan kopi biasanya 1:5.</p> </div> <div class="feature-card card tilt"> <span class="icon">💡</span> <h3>Ide Cemerlang (Jam 2 Pagi)</h3> <p>Tempat curhat ide proyek revolusioner yang terpikir saat insomnia, tapi terlupakan saat bangun tidur.</p> </div> <div class="feature-card card tilt"> <span class="icon">😂</span> <h3>Repositori Meme Global</h3> <p>Supply chain meme programming tak terbatas untuk menjaga kewarasan (dan sebagai alasan prokrastinasi).</p> </div> <div class="feature-card card tilt"> <span class="icon">🚀</span> <h3>Jalan Pintas Tingkat Lanjut</h3> <p>Berbagi snippet 'sakti', library 'ajaib', dan AI 'penyelamat' agar deadline terasa seperti... saran, bukan kewajiban.</p> </div> </div> </section>
+
+        <!-- Dark Trigger Wrapper (Keep as is) -->
+        <div id="dark-trigger-wrapper"> <div id="dark-transition-trigger"></div> </div>
+
+        <!-- ========= DARK MODE SECTIONS START ========= -->
+
+        <!-- Tools Section -->
+        <section id="tools" class="content-section">
+           <h2><span class="highlight">Arsenal Rahasia</span> Programmer IMPHNEN</h2>
+            <p>Peralatan perang modern yang membantu kita terlihat sibuk dan produktif (padahal...).</p>
+            <!-- Container kartu di section ini akan di-style untuk center -->
+            <div class="card-container">
+               <div class="tool-card card tilt"> <span class="icon">📋</span> <h3>Stack Overflow Copier Pro™</h3> <p>Bukan sekadar copy-paste. Ini seni! Fitur unggulan: 'Adaptasi Kode Otomatis' (alias ganti nama variabel).</p> </div>
+               <div class="tool-card card tilt"> <span class="icon">✨</span> <h3>One-Click Framework Generator</h3> <p>"Mau bikin web complex? Pilih framework (React/Vue/Angular/Svelte), klik, jadi!*" (*Butuh konfigurasi tambahan 5 hari).</p> </div>
+               <div class="tool-card card tilt"> <span class="icon">🤖</span> <h3>AI Code Assistant++</h3> <p>Dia yang ngoding, kita yang claim. Mampu menghasilkan kode yang... berfungsi, kadang-kadang. Dan bisa diajak curhat bug.</p> </div>
+                <div class="tool-card card tilt"> <span class="icon">😴</span> <h3>Auto-Standup Report Bot</h3> <p>Generate laporan "progress" harian yang terdengar mengesankan, berdasarkan histori pencarian Google Anda.</p> </div>
+            </div>
+        </section>
+
+        <!-- Hall of Fame Section (Keep as is) -->
+        <section id="hall-of-fame" class="content-section"> <h2>Legenda <span class="highlight">IMPHNEN</span> (Yang Hampir Terkenal)</h2> <p style="max-width: 700px; margin: -20px auto 40px auto; font-size: 1.1em; color: var(--secondary-color); transition: color 0.5s ease; text-align: center;">Mereka yang telah mencapai puncak kemalasan produktif dan menginspirasi kita semua.</p> <div class="card-container"> <div class="hof-card card tilt"> <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>😴</text></svg>" alt="Avatar Legenda 1" class="avatar"> <h3>Master Rebahan</h3> <span class="title">Debugging dalam Mimpi</span> <p>Konon bisa menemukan bug paling rumit saat tidur siang. Kunci sukses: bantal yang empuk.</p> </div> <div class="hof-card card tilt"> <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" alt="Avatar Legenda 2" class="avatar"> <h3>Dr. Google Fu</h3> <span class="title">Pencari Solusi Instan</span> <p>Mampu menemukan jawaban di halaman 5 hasil pencarian Google. Memiliki gelar kehormatan dari Stack Overflow.</p> </div> <div class="hof-card card tilt"> <img src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎭</text></svg>" alt="Avatar Legenda 3" class="avatar"> <h3>The Pretender</h3> <span class="title">Ahli Bahasa Korporat</span> <p>Menguasai seni menjelaskan "sedang proses" untuk task yang belum dimulai. Sangat pandai membuat presentasi.</p> </div> </div> </section>
+
+        <!-- ========= DARK MODE SECTIONS END ========= -->
+
+        <!-- CTA Section (Keep as is) -->
+        <section id="join" class="content-section cta-section"> <h2>Sudah Merasa <span class="highlight">Jiwamu</span> Ada Di Sini?</h2> <p>Hentikan pencarian jati diri programmingmu yang melelahkan. Tempatmu di sini, bersama kami, para calon legenda (yang seringnya wacana). Gabung sekarang!</p> <a href="https://www.facebook.com/groups/1032515944638255/" target="_blank" class="btn btn-primary btn-large tilt">TELEPORT KE GRUP FACEBOOK!</a> <p class="small-text">Link error? Salahkan cache browser atau ISP. Atau coba <a href="https://www.facebook.com/groups/programmerhandal" target="_blank">link cadangan</a> ini (semoga gak error juga).</p> </section>
+    </main>
+
+    <!-- Footer (Keep as is) -->
+    <footer> <p>© 2024 IMPHNEN - Mission: Code Less, Achieve More (Maybe). Powered by Coffee, Memes, and AI.</p> <p>Stay Awesome, Stay <span class="strike">Lazy</span> Efficient!</p> </footer>
+
+    <!-- Script -->
+    <script>
+        // --- JavaScript Starts Here ---
+
+        // --- Fungsi untuk menyembunyikan loader ---
+        function hideLoader() {
+            const loader = document.getElementById('loading-overlay');
+            if (loader) {
+                loader.classList.add('hidden');
+                // setTimeout(() => { loader.remove(); }, 500); // Uncomment jika ingin hapus elemen
+            }
+        }
+        window.onload = hideLoader;
+
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Hamburger Menu Toggle ---
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinksContainer = document.querySelector('.nav-links-container');
+            const navLinks = document.querySelectorAll('.nav-links-container a'); // Ambil link di dalam menu
+
+            if (menuToggle && navLinksContainer) {
+                menuToggle.addEventListener('click', () => {
+                    navLinksContainer.classList.toggle('active');
+                    // Ganti ikon hamburger ke 'X' saat aktif (opsional)
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) { // Cek jika ikon ada
+                       if (navLinksContainer.classList.contains('active')) {
+                           icon.classList.remove('fa-bars');
+                           icon.classList.add('fa-times');
+                       } else {
+                           icon.classList.remove('fa-times');
+                           icon.classList.add('fa-bars');
+                       }
+                    }
+                });
+
+                // --- Tutup menu saat link di klik (untuk navigasi halaman sama) ---
+                 navLinks.forEach(link => {
+                     link.addEventListener('click', () => {
+                         if (navLinksContainer.classList.contains('active')) {
+                             navLinksContainer.classList.remove('active');
+                              const icon = menuToggle.querySelector('i');
+                               if (icon) {
+                                  icon.classList.remove('fa-times');
+                                  icon.classList.add('fa-bars');
+                              }
+                         }
+                     });
+                 });
+
+                // --- Tutup menu saat klik di luar area menu (opsional) ---
+                // document.addEventListener('click', (event) => {
+                //     const isClickInsideNav = navLinksContainer.contains(event.target);
+                //     const isClickOnToggle = menuToggle.contains(event.target);
+                //     if (!isClickInsideNav && !isClickOnToggle && navLinksContainer.classList.contains('active')) {
+                //         navLinksContainer.classList.remove('active');
+                //         // Reset ikon jika perlu
+                //     }
+                // });
+            }
+
+
+            // --- Smooth Scroll ---
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    // Cek jika link berasal dari menu mobile yang aktif
+                    // Jika iya, biarkan fungsi penutup menu di atas yang handle preventDefault
+                    // Jika tidak (link biasa), lakukan preventDefault di sini
+                    if (!navLinksContainer || !navLinksContainer.classList.contains('active')) {
+                        e.preventDefault();
+                    }
+
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerHeight = document.querySelector('header')?.offsetHeight || 70;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
+                        window.scrollTo({ top: offsetPosition, behavior: "smooth" });
+                    }
+                });
+            });
+
+            // --- Active Nav Link Updater ---
+            // (Kode ini perlu sedikit penyesuaian untuk bekerja dengan struktur baru)
+            const allNavLinks = document.querySelectorAll('nav a[href^="#"]'); // Pilih semua link nav
+
+            function updateActiveNavLink(activeId) {
+                allNavLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (activeId && link.getAttribute('href') === activeId) {
+                        link.classList.add('active');
+                    }
+                });
+                 // Handle kasus saat di paling atas atau tidak ada section aktif
+                if (!document.querySelector('nav a.active')) {
+                    if (window.pageYOffset < window.innerHeight * 0.5) {
+                         document.querySelector('nav a[href="#hero"]')?.classList.add('active');
+                    } else {
+                        // Fallback ke section terakhir yang terlihat (logika sama seperti sebelumnya)
+                        let lastVisibleSectionId = '#hero';
+                        const sectionsForNav = document.querySelectorAll('main section[id]');
+                        for (let i = sectionsForNav.length - 1; i >= 0; i--) {
+                            const section = sectionsForNav[i];
+                            const sectionTop = section.offsetTop - (document.querySelector('header')?.offsetHeight || 70) - 20;
+                            if (window.pageYOffset >= sectionTop) {
+                                lastVisibleSectionId = '#' + section.getAttribute('id');
+                                break;
+                            }
+                        }
+                        document.querySelector(`nav a[href="${lastVisibleSectionId}"]`)?.classList.add('active');
+                    }
+                }
+                // Jika tidak ada yang aktif sama sekali setelah semua cek, aktifkan Home
+                if (!document.querySelector('nav a.active')) {
+                    document.querySelector('nav a[href="#hero"]')?.classList.add('active');
+                }
+            }
+
+
+            // --- Dark Mode Trigger Element ---
+            const darkModeTrigger = document.getElementById('dark-transition-trigger');
+            const bodyElement = document.body;
+            let isDarkMode = false;
+
+            // --- Scroll Handler (Active Nav & Dark Mode) ---
+            const sections = document.querySelectorAll('main section[id]');
+            let scrollTimeout;
+
+            function handleScroll() {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    let currentSectionId = '';
+                    const scrollY = window.pageYOffset;
+                    const windowHeight = window.innerHeight;
+                    const headerHeight = document.querySelector('header')?.offsetHeight || 70;
+                    let sectionFound = false;
+
+                    sections.forEach(section => {
+                        const sectionTop = section.offsetTop - headerHeight - 50;
+                        const sectionBottom = sectionTop + section.clientHeight;
+                        if ( (scrollY >= sectionTop && scrollY < sectionBottom) || (scrollY < sectionTop && scrollY + windowHeight > sectionBottom) ) {
+                           currentSectionId = '#' + section.getAttribute('id');
+                           sectionFound = true;
+                        }
+                    });
+
+                     if (!sectionFound && scrollY > 0) {
+                         let lastVisibleSectionId = '#hero';
+                         for (let i = sections.length - 1; i >= 0; i--) {
+                             const section = sections[i];
+                             const sectionTop = section.offsetTop - headerHeight - 20;
+                             if (scrollY >= sectionTop) {
+                                 lastVisibleSectionId = '#' + section.getAttribute('id');
+                                 break;
+                            }
+                         }
+                        currentSectionId = lastVisibleSectionId;
+                     } else if (scrollY < windowHeight * 0.4) {
+                        currentSectionId = '#hero';
+                    }
+                    updateActiveNavLink(currentSectionId);
+
+                    // Dark Mode Detection
+                    if (darkModeTrigger) {
+                        const triggerRect = darkModeTrigger.getBoundingClientRect();
+                        const bodyClassList = bodyElement.classList;
+                        if (triggerRect.top < window.innerHeight * 0.6 && !bodyClassList.contains('dark-mode')) {
+                            bodyClassList.add('dark-mode');
+                        }
+                        else if (triggerRect.bottom > window.innerHeight * 0.4 && bodyClassList.contains('dark-mode')) {
+                             bodyClassList.remove('dark-mode');
+                         }
+                    }
+                 }, 50);
+            }
+
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Initial check on load
+
+            // --- 3D Tilt Effect (Keep as is) ---
+            const tiltElements = document.querySelectorAll('.tilt');
+            tiltElements.forEach(el => {
+                const sensitivity = 15; const maxTilt = 18; let rafId = null;
+                function onMouseMove(e) { if (rafId) cancelAnimationFrame(rafId); rafId = requestAnimationFrame(() => { const { left, top, width, height } = el.getBoundingClientRect(); const x = e.clientX - left; const y = e.clientY - top; let rotateX = ((height / 2 - y) / (height / 2)) * sensitivity; let rotateY = ((x - width / 2) / (width / 2)) * sensitivity; rotateX = Math.max(-maxTilt, Math.min(maxTilt, rotateX)); rotateY = Math.max(-maxTilt, Math.min(maxTilt, rotateY)); el.style.transition = 'transform 0.05s linear'; el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05) translateZ(10px)`; }); }
+                function onMouseLeave() { if (rafId) cancelAnimationFrame(rafId); el.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'; el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1) translateZ(0px)'; }
+                el.addEventListener('mousemove', onMouseMove); el.addEventListener('mouseleave', onMouseLeave);
+            });
+
+            // --- SVG Placeholder (Keep as is) ---
+             const heroImageContainer = document.querySelector('.hero-image-placeholder'); if (heroImageContainer && heroImageContainer.children.length === 0) { heroImageContainer.innerHTML = ` <svg width="100%" height="auto" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width: 400px; opacity: 0.6;"> <defs> <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" stop-color="#B3E5FC"/> <stop offset="100%" stop-color="#E1F5FE"/> </linearGradient> <linearGradient id="gradDark" x1="0%" y1="0%" x2="100%" y2="100%"> <stop offset="0%" stop-color="#1e3a5f"/> <stop offset="100%" stop-color="#0f1a2a"/> </linearGradient> </defs> <rect width="400" height="300" rx="15" fill="url(#grad1)" class="svg-bg-light"/> <rect width="400" height="300" rx="15" fill="url(#gradDark)" class="svg-bg-dark" style="opacity:0;"/> <path d="M80 250 Q150 180 200 210 T320 190" stroke="#0277BD" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.7" class="svg-stroke-light"/> <path d="M80 250 Q150 180 200 210 T320 190" stroke="#00f2ff" stroke-width="5" fill="none" stroke-linecap="round" opacity="0" class="svg-stroke-dark"/> <circle cx="100" cy="120" r="25" fill="#FFA726" opacity="0.8" class="svg-accent1-light"/> <circle cx="100" cy="120" r="25" fill="#f800ff" opacity="0" class="svg-accent1-dark"/> <circle cx="300" cy="100" r="18" fill="#81D4FA" opacity="0.8" class="svg-accent2-light"/> <circle cx="300" cy="100" r="18" fill="#00f2ff" opacity="0" class="svg-accent2-dark"/> <rect x="60" y="50" width="100" height="60" rx="8" fill="#FFFDE7" opacity="0.9" class="svg-rect1-light"/> <rect x="60" y="50" width="100" height="60" rx="8" fill="#2a2a3a" opacity="0" class="svg-rect1-dark"/> <text x="110" y="85" font-family="monospace, monospace" font-size="24" fill="#795548" text-anchor="middle" class="svg-text1-light">{...}</text> <text x="110" y="85" font-family="Orbitron, sans-serif" font-size="24" fill="#00f2ff" text-anchor="middle" class="svg-text1-dark" style="opacity:0; text-shadow: 0 0 5px #00f2ff;">{...}</text> <text x="200" y="280" font-family="Poppins, sans-serif" font-size="12" fill="#757575" text-anchor="middle" class="svg-text-footer-light">Ilustrasi Programmer Nyantai</text> <text x="200" y="280" font-family="Poppins, sans-serif" font-size="12" fill="#a0a0a0" text-anchor="middle" class="svg-text-footer-dark" style="opacity:0;">// Initiating Chill Mode...</text> <style> .dark-mode .svg-bg-light, .dark-mode .svg-stroke-light, .dark-mode .svg-accent1-light, .dark-mode .svg-accent2-light, .dark-mode .svg-rect1-light, .dark-mode .svg-text1-light, .dark-mode .svg-text-footer-light { opacity: 0 !important; transition: opacity 0.5s ease; } .dark-mode .svg-bg-dark, .dark-mode .svg-stroke-dark, .dark-mode .svg-accent1-dark, .dark-mode .svg-accent2-dark, .dark-mode .svg-rect1-dark, .dark-mode .svg-text1-dark, .dark-mode .svg-text-footer-dark { opacity: 0.9 !important; transition: opacity 0.5s ease 0.2s; } </style> </svg> `; }
+
+            console.log("IMPHNEN v2.3 (White Loader, Hamburger, Centered Tools) script loaded!");
+        });
+
+        // --- JavaScript Ends Here ---
+    </script>
+
+</body>
+</html>
