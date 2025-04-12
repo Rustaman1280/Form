@@ -1,0 +1,164 @@
+/* Basic Reset & Body Style */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif; /* Fallback font */
+    background-color: #000; /* Background if container doesn't fill */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align container to top */
+    min-height: 100vh;
+    opacity: 0; /* Initially hidden for fade-in */
+    animation: fadeInPage 1.5s ease-out forwards;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Poster Container - Main Wrapper */
+.poster-container {
+    position: relative; /* Crucial for absolute positioning of children */
+    width: 540px; /* Approx width based on poster ratio, adjust as needed */
+    height: 960px; /* Approx height, adjust as needed */
+    /* Create the gradient background */
+    background: linear-gradient(to bottom, #1a1a1a 0%, #3a2d1e 45%, #e8cfa8 80%);
+    overflow: hidden; /* Hide parts of elements that go outside */
+    margin-top: 20px; /* Optional margin */
+    margin-bottom: 20px;
+}
+
+/* Background Pattern */
+.background-pattern {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%; /* Adjust height coverage */
+    background-image: url('assets/pattern.png');
+    background-repeat: repeat;
+    background-size: auto 100px; /* Adjust pattern size */
+    opacity: 0.6; /* Adjust opacity */
+    z-index: 1; /* Behind text, above gradient */
+}
+
+/* General Element Styling */
+.element {
+    position: absolute; /* Layer all elements */
+    max-width: 100%; /* Prevent image overflow */
+    height: auto;
+    z-index: 10; /* Default stacking */
+}
+
+/* Specific Element Positioning & Styling */
+/* (Adjust top, left, right, bottom, width, z-index values by trial-and-error to match the poster) */
+
+.mask {
+    top: -20px; /* Adjust position */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110%; /* Slightly wider than container */
+    z-index: 20;
+}
+
+.yellow-glow {
+    top: 150px; /* Adjust */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px; /* Adjust */
+    z-index: 15;
+    animation: pulseGlow 4s infinite ease-in-out;
+}
+
+.dancer-left {
+    top: 300px; /* Adjust */
+    left: -50px; /* Adjust */
+    width: 300px; /* Adjust */
+    z-index: 25;
+    animation: floatAnimation 5s infinite alternate ease-in-out;
+    transform-origin: bottom center; /* Set rotation/scaling point if needed */
+}
+
+.dancer-right {
+    top: 320px; /* Adjust */
+    right: -70px; /* Adjust */
+    width: 320px; /* Adjust */
+    z-index: 25;
+    animation: floatAnimation 5.5s infinite alternate ease-in-out; /* Slightly different timing */
+    transform-origin: bottom center;
+}
+
+.beige-cloud { /* This cloud forms the base for the bottom text */
+    bottom: 120px; /* Adjust */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%; /* Wider than container */
+    z-index: 5; /* Behind bottom text but above pattern */
+    opacity: 0.9;
+}
+
+/* Text Blocks */
+.text-block {
+    position: absolute;
+    text-align: center;
+    color: #4a2d1a; /* Dark brown color */
+    font-weight: bold;
+    z-index: 30; /* Above most elements */
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.2); /* Subtle shadow */
+}
+
+.text-top {
+    top: 210px; /* Adjust to be inside the glow */
+    font-size: 1.1em; /* Adjust */
+    line-height: 1.4;
+    color: #58381f; /* Slightly different brown */
+}
+/* Add slight spacing for the first word as in poster */
+.text-top .spacing {
+    margin-right: 0.3em;
+}
+
+.text-bottom {
+    bottom: 150px; /* Adjust to be on the cloud */
+    font-family: serif; /* Try a serif font */
+}
+
+.text-bottom h1 {
+    font-size: 2.8em; /* Adjust */
+    line-height: 1.1;
+    margin-bottom: 15px; /* Space below title */
+     color: #5c3a1e;
+}
+
+.text-bottom p {
+    font-size: 0.9em; /* Adjust */
+    font-weight: normal; /* Date/Location not as bold */
+    margin-top: 5px;
+     color: #6c4a2e;
+}
+
+/* --- Animations --- */
+
+/* Page Fade-in */
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Floating Animation for Dancers */
+@keyframes floatAnimation {
+    0% { transform: translate(0, 0px); }
+    50% { transform: translate(0, -15px); } /* Move up */
+    100% { transform: translate(0, 0px); }
+}
+
+/* Pulsing Glow */
+@keyframes pulseGlow {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+    50% { transform: translateX(-50%) scale(1.05); opacity: 1; }
+    100% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+}
