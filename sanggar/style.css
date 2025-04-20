@@ -1,0 +1,200 @@
+/* Basic Reset & Body Style */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif; /* Fallback font */
+    background-color: #000000; /* Dark background fallback */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align container to top */
+    min-height: 100vh;
+    opacity: 0; /* Initially hidden for fade-in */
+    animation: fadeInPage 1.5s ease-out forwards;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    padding: 20px 0; /* Add some padding top and bottom */
+}
+
+/* Poster Container - Main Wrapper - Responsive */
+.poster-container {
+    position: relative; /* Crucial for absolute positioning */
+    width: 100%; /* Make it responsive */
+    max-width: 540px; /* Maximum width like original */
+    aspect-ratio: 540 / 960; /* Maintain aspect ratio */
+    height: auto; /* Height adjusts automatically */
+    /* Create the gradient background */
+    background: linear-gradient(to bottom, #1a1a1a 0%, #3a2d1e 45%, #e8cfa8 80%);
+    overflow: hidden; /* Hide parts of elements that go outside */
+    margin: 0 auto; /* Center the container */
+}
+
+
+
+/* General Element Styling */
+.element {
+    position: absolute; /* Layer all elements */
+    max-width: 100%; /* Prevent image overflow */
+    height: auto;
+    /* Default z-index, override as needed */
+}
+
+/* Specific Element Positioning & Styling */
+/* (Values below might need slight adjustments based on the responsive container) */
+/* Use percentages where possible for better scaling */
+
+.top-mask { /* Renamed from .mask to match HTML */
+    top: -5%; /* Position relative to container height */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110%; /* Slightly wider */
+    z-index: 20; /* Above glow, potentially below dancers? Adjust if needed */
+}
+
+.yellow-glow {
+    top: 18%; /* Position relative */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55%; /* Relative width */
+    max-width: 300px; /* Max size */
+    z-index: 15; /* Below top mask, above pattern */
+    animation: pulseGlow 4s infinite ease-in-out; /* Animasi sudah ada */
+}
+
+.dancer-left {
+    top: 35%; /* Adjust relative position */
+    left: -10%; /* Adjust relative position */
+    width: 55%; /* Relative width */
+    max-width: 300px;
+    z-index: 25; /* Above glow and top-mask */
+    animation: floatAnimation 5s infinite alternate ease-in-out;
+    transform-origin: bottom center;
+}
+
+.dancer-right {
+    top: 38%; /* Adjust relative position */
+    right: -13%; /* Adjust relative position */
+    width: 60%; /* Relative width */
+    max-width: 320px;
+    z-index: 25; /* Above glow and top-mask */
+    animation: floatAnimation 5.5s infinite alternate ease-in-out;
+    transform-origin: bottom center;
+}
+
+/* Optional Cloud Example (if you use 2.png or 5.png) */
+/*
+.optional-cloud {
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    z-index: 8;
+    opacity: 0.9;
+}
+*/
+
+.bottom-text-block { /* Styling for 4.png */
+    bottom: 0%; /* Stick to bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 105%; /* Slightly wider */
+    z-index: 30; /* <<< PENTING: Di atas penari (z-index 25) dan pattern (z-index 5) */
+}
+
+.bottom-text-block1 { /* Styling for 4.png */
+    bottom: 0%; /* Stick to bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 105%; /* Slightly wider */
+    z-index: 10; /* <<< PENTING: Di atas penari (z-index 25) dan pattern (z-index 5) */
+}
+.bottom-text-block2 { /* Styling for 4.png */
+    bottom: 0%; /* Stick to bottom */
+    left: 0;
+   /* Slightly wider */
+    z-index: 5;
+    opacity: 0.5; /* <<< PENTING: Di atas penari (z-index 25) dan pattern (z-index 5) */
+  
+    
+    width: 100%;
+    height: 100%; /* Adjust height coverage - area bawah */
+    
+    background-repeat: repeat;
+
+    position: center;
+   
+}
+
+/* --- Animations --- */
+
+/* Page Fade-in */
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Floating Animation for Dancers */
+@keyframes floatAnimation {
+    0% { transform: translate(0, 0px) rotate(0deg); } /* Added rotate for subtle effect */
+    50% { transform: translate(0, -10px) rotate(1deg); } /* Move up slightly & rotate */
+    100% { transform: translate(0, 0px) rotate(0deg); }
+}
+/* Adjust float animation to be less intense if needed */
+/*
+@keyframes floatAnimation {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+*/
+
+
+/* Pulsing Glow */
+@keyframes pulseGlow {
+    0% { transform: translateX(-50%) scale(1); opacity: 0.8; } /* Start slightly less opaque */
+    50% { transform: translateX(-50%) scale(1.05); opacity: 1; } /* Scale up slightly */
+    100% { transform: translateX(-50%) scale(1); opacity: 0.8; } /* Return to start */
+}
+
+.instagram-button {
+    /* --- Properti Baru untuk Posisi Tengah --- */
+    position: absolute; /* Penting: posisi absolut relatif ke parent (.poster-container) */
+    top: 50%;          /* Posisikan titik atas tombol di 50% tinggi parent */
+    left: 50%;         /* Posisikan titik kiri tombol di 50% lebar parent */
+    transform: translate(-50%, -50%); /* Geser tombol ke kiri 50% lebarnya & ke atas 50% tingginya */
+    z-index: 90;       /* Pastikan tombol di atas elemen poster lain (harus lebih tinggi dari z-index lain) */
+    /* --- Hapus/Ubah Properti Lama --- */
+    /* display: block; /* Tidak perlu lagi */
+    /* width: fit-content; /* Lebar masih bisa fit-content atau tentukan lebar tetap jika perlu */
+    margin: 0;         /* Hapus margin auto karena posisi absolut */
+
+    /* --- Properti Styling yang Masih Berlaku --- */
+    width: fit-content; /* Biarkan lebar menyesuaikan konten */
+    padding: 10px 25px; /* Sedikit lebih kecil mungkin agar pas di tengah */
+    background-color: #d4b78f;
+    color: #4a2d1a;
+    border: 2px solid #4a2d1a;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 4px 16px rgba(107, 62, 10, 0.692);
+    font-size: 0.9em; /* Sedikit lebih kecil mungkin */
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Efek Hover pada Tombol (tetap sama) */
+.instagram-button:hover,
+.instagram-button:focus {
+    background-color: #5c3a1e;
+    color: #e8cfa8;
+    border-color: #3a2d1e;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    /* transform: translateY(-3px); /* Hati-hati jika pakai transform untuk posisi dan hover */
+    transform: translate(-50%, -50%) translateY(-3px); /* Gabungkan transform hover dengan transform posisi */
+    outline: none;
+}
