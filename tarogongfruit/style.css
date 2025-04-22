@@ -1,0 +1,372 @@
+/* Reset and Basic Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9fdf8; /* Slightly off-white/greenish background */
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block; /* Remove extra space below images */
+}
+
+/* Variables (optional but recommended) */
+:root {
+    --primary-color: #388e3c; /* Green */
+    --secondary-color: #f5f5f5; /* Light grey for label */
+    --dark-color: #212121; /* Dark text */
+    --light-color: #ffffff; /* White */
+    --accent-color-light: #e8f5e9; /* Light green background for image */
+    --border-radius: 20px;
+    --button-border-radius: 50px;
+    --card-border-radius: 25px;
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Navbar */
+.navbar {
+    padding: 20px 0;
+    background-color: var(--light-color); /* White background for contrast */
+    position: sticky; /* Makes navbar stick on scroll */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-family: "Seaweed Script", cursive;
+    font-weight: 700;
+    font-style: italic; /* Added italic style */
+    color: var(--dark-color);
+}
+
+.navbar nav ul {
+    display: flex;
+}
+
+.navbar nav ul li {
+    margin-left: 30px;
+}
+
+.navbar nav ul li a {
+    color: #555;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.navbar nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: var(--button-border-radius);
+    font-weight: 600;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1.5px solid transparent; /* Base border */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #2e7d32; /* Darker green on hover */
+    border-color: #2e7d32;
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1.5px solid var(--primary-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+}
+
+.btn-login {
+    padding: 8px 25px; /* Slightly smaller padding for login button */
+}
+
+/* Hero Section */
+.hero {
+    padding: 60px 0;
+    /* Soft green gradient background */
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    gap: 40px; /* Space between text and image */
+}
+
+.hero-text {
+    flex: 1; /* Takes available space */
+}
+
+.hero-text h1 {
+    font-size: 3.2em; /* Large heading */
+    font-weight: 700;
+    color: var(--dark-color);
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.hero-subheadline {
+    font-size: 2.8em; /* Large green text */
+    font-weight: 700;
+    color: var(--primary-color);
+    line-height: 1.1;
+    margin-bottom: 30px;
+    text-shadow: 1px 5px 50px rgba(69, 255, 81, 0.699); 
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+}
+
+.hero-image-container {
+    flex: 1; /* Takes available space */
+    position: relative; /* For positioning label and cart */
+    display: flex; /* Helps with centering if needed */
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image {
+    max-width: 60%; /* Adjust as needed */
+    height: auto;
+    border-radius: var(--border-radius); /* Rounded corners for the image itself */
+    object-fit: cover; /* Ensure image covers the area */
+    display: block;
+}
+
+.label-kelompok {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    color: #555;
+    padding: 5px 15px;
+    border-radius: var(--button-border-radius);
+    font-size: 0.9em;
+    font-weight: 500;
+    backdrop-filter: blur(3px); /* Optional blur effect */
+}
+
+.cart-icon-link {
+    position: absolute;
+    top: 20px; /* Adjust position */
+    right: 20px; /* Adjust position */
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%; /* Make it circular */
+    width: 50px; /* Size of the circle */
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    backdrop-filter: blur(3px); /* Optional */
+    transition: background-color 0.3s ease;
+}
+.cart-icon-link:hover {
+    background-color: rgba(255, 255, 255, 1); /* Less transparent on hover */
+}
+
+.cart-icon {
+    width: 24px; /* Size of the icon */
+    height: 24px;
+    color: var(--dark-color); /* For Font Awesome */
+}
+
+
+/* Top Products Section */
+.top-products {
+    padding: 80px 0;
+    background-color: var(--light-color); /* White background */
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 50px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px;
+}
+
+.product-card {
+    background-color: var(--light-color);
+    border-radius: var(--card-border-radius);
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Use flexbox for vertical alignment */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-between; /* Push button to bottom */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+.product-image-wrapper {
+    background-color: var(--accent-color-light); /* Light green background */
+    border-radius: var(--card-border-radius); /* Match card radius or slightly less */
+    padding: 20px; /* Space around image */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Fixed height for consistency */
+    overflow: hidden; /* Ensure image doesn't overflow */
+}
+
+.product-image-wrapper img {
+    max-height: 100%; /* Ensure image fits within the height */
+    max-width: 100%; /* Ensure image fits within the width */
+    object-fit: contain; /* Scale image while preserving aspect ratio */
+}
+
+.product-card h3 {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 15px;
+    flex-grow: 1; /* Allow title to take space if needed */
+}
+
+.btn-buy {
+    width: 80%; /* Make button slightly less wide */
+    margin: 0 auto; /* Center the button */
+    padding: 12px 20px; /* Slightly larger button */
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 50px; /* Space above footer */
+}
+
+/* Responsive adjustments (contoh sederhana) */
+@media (max-width: 992px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .hero-text {
+        margin-bottom: 40px;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+    .hero-image-container {
+        max-width: 500px; /* Limit image size on smaller screens */
+        margin: 0 auto;
+    }
+    .hero-image {
+        max-width: 100%;
+    }
+    .navbar nav {
+        /* Sembunyikan nav utama, tampilkan burger menu (perlu JS) */
+       /* display: none; */
+    }
+    .btn-login {
+        /* Mungkin perlu disembunyikan atau dipindah ke menu mobile */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-text h1 {
+        font-size: 2.8em;
+    }
+    .hero-subheadline {
+        font-size: 2.2em;
+    }
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+     .nav-container {
+        flex-direction: column;
+        gap: 15px;
+     }
+      .navbar nav ul {
+        justify-content: center;
+        padding-left: 0; /* Hapus padding jika ada */
+    }
+     .navbar nav ul li {
+        margin: 0 10px;
+    }
+    .hero-text h1 {
+        font-size: 2.2em;
+    }
+    .hero-subheadline {
+        font-size: 1.8em;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+     .btn {
+         width: 80%; /* Make buttons wider on mobile */
+     }
+    .product-grid {
+        grid-template-columns: 1fr; /* Stack cards vertically */
+    }
+    .btn-buy {
+        width: 70%;
+    }
+}
