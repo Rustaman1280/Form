@@ -1297,22 +1297,24 @@ particlesContainer.appendChild(particle);
 }
 
 createParticles();
+let mobileMenuTimer;
 function toggleMenu() {
     const mobileMenu = document.getElementById('mobileMenu');
     const hamburger = document.querySelector('.hamburger');
 
     // Toggle active class for animation
-    hamburger.classList.toggle('active');
+    const isOpen = hamburger.classList.toggle('active');
+    clearTimeout(mobileMenuTimer);
 
     // Toggle menu visibility with a timeout for animation
-    if (mobileMenu.classList.contains('show')) {
+    if (!isOpen) {
         mobileMenu.classList.remove('show');
-        setTimeout(() => {
+        mobileMenuTimer = setTimeout(() => {
             mobileMenu.style.display = 'none'; // Sembunyikan setelah animasi selesai
         }, 300); // Waktu yang sama dengan durasi transisi
     } else {
         mobileMenu.style.display = 'block'; // Tampilkan menu
-        setTimeout(() => {
+        mobileMenuTimer = setTimeout(() => {
             mobileMenu.classList.add('show'); // Tambahkan kelas show untuk animasi
         }, 10); // Delay kecil untuk memastikan transisi
     }
